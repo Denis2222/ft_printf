@@ -1,14 +1,15 @@
-#include <stdio.h>
-#include <stdarg.h>
+#include "ft_printf.h"
 
-void	myprintf(char *format, ...)
+int	ft_printf(char *format, ...)
 {
 	va_list	pa;
 	int		n;
 	char	*s;
 	char	c;
 	float	f;
+	int		nb;
 
+	nb = 0;
 	va_start(pa, format);
 	while (*format != '\0')
 	{
@@ -16,17 +17,17 @@ void	myprintf(char *format, ...)
 		{
 			if (*(++format) == '%')
 			{
-				putchar('%');
+				nb += ft_putchar('%');
 			}
 			else if (*format == 'c')
 			{
 				c = va_arg(pa, int);
-				printf("%c", c);
+				nb += ft_putchar(c);
 			}
 			else if (*format == 'd')
 			{
 				n = va_arg(pa, int);
-				printf("%d", n);
+				nb += ft_putnbr(n);
 			}
 			else if (*format == 'f')
 			{
@@ -36,18 +37,14 @@ void	myprintf(char *format, ...)
 			else if (*format == 's')
 			{
 				s = va_arg(pa, char *);
-				printf("%s", s);
+				nb += ft_putstr(s);
 			}
 		}
 		else
-			putchar(*format);
+			nb += ft_putchar(*format);
 		format++;
 	}
 	va_end(pa);
+	return (nb);
 }
 
-int	main(void)
-{
-	myprintf("TEST %d ",4);
-	return (0);
-}
