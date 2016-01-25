@@ -2,6 +2,7 @@ SRCS = ft_putchar.c \
 	   ft_putstr.c \
 	   ft_strlen.c \
 	   ft_putnbr.c \
+	   t_opts.c \
 	   ft_printf.c
 
 NAME = libftprintf.a
@@ -13,8 +14,7 @@ AR = ar -cq
 RM = rm -rf
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
-all: $(NAME)
-
+all: clean $(NAME) test
 $(NAME): $(OBJS)
 	@$(AR) $@ $^
 	@echo "Link $^"
