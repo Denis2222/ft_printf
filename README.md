@@ -17,4 +17,10 @@
 | c: | unsigned char |
 | C: | unsigned long char |
 
-
+| drapeaux | action |
+| -------- | ------ |
+|rien	| justifié à droite et complété à gauche par des espaces |
+|-	|justifié à gauche et complété à droite par des espaces |
+|+	| les résultats commencent toujours par le signe + ou -
+|espace |	le signe n'est affiché que pour les valeurs négatives
+|# | (octal 0VAL) (hexa 0xVAL ou 0XVAL) |
