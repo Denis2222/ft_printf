@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2016/01/07 16:41:03 by dmoureu-          #+#    #+#             */
+/*   Updated: 2016/01/07 16:41:06 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+t_list	*ft_lstrev(t_list *lst)
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
+	t_list *out;
 
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	out = NULL;
+	while (lst)
 	{
-		if (*format == '%')
-		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
-		}
-		else
-			ft_putchar(*format);
-		format++;
+		ft_lstadd(&out, ft_lstnew(lst->content, lst->content_size));
+		lst = lst->next;
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
+	return (out);
 }

@@ -10,9 +10,12 @@ int	main(int ac, char **av)
 	(void)av;
 	if (ac == 2)
 	{
-		ft_printf("[%s %c %s %d]\n", av[1], '@', av[1], 3);
-		printf("|%10s|\n","tt");
-		//printf("|%10.4f|\n",1.23456789);
+		ft_printf("%#.0s    %c%d", av[1], '@', 2);
+		ft_putnbr(printf("|%s|\n","tt"));
+	}
+	else
+	{
+		ft_printf(av[1], av[2], av[3]);
 	}
 	return (0);
 }

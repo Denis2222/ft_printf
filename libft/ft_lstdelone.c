@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/11/26 19:22:37 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/12/14 18:08:43 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
-
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	if (alst == NULL || *alst == NULL)
+		return ;
+	if (del != NULL)
 	{
-		if (*format == '%')
-		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
-		}
-		else
-			ft_putchar(*format);
-		format++;
+		del((*alst)->content, (*alst)->content_size);
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
+	free(*alst);
+	*alst = NULL;
 }

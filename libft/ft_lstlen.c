@@ -1,40 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/12/12 16:52:38 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/12/15 18:10:17 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+int	ft_lstlen(t_list *list)
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
+	int	len;
 
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	len = 0;
+	while (list)
 	{
-		if (*format == '%')
-		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
-		}
-		else
-			ft_putchar(*format);
-		format++;
+		len++;
+		list = list->next;
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
+	return (len);
 }

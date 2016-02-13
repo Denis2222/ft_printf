@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/11/23 11:31:24 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/12/17 11:04:48 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+char		*ft_strnstr(const char *str, const char *to_find, size_t n)
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
+	size_t	pos;
+	int		x;
 
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	if (!*to_find)
+		return ((char*)str);
+	pos = 0;
+	x = 0;
+	while (str[pos] != '\0')
 	{
-		if (*format == '%')
+		if (str[pos] == to_find[x])
 		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
+			x++;
+			if (to_find[x] == '\0')
+				return ((char*)&str[pos - x + 1]);
 		}
 		else
-			ft_putchar(*format);
-		format++;
+		{
+			pos = pos - x;
+			x = 0;
+		}
+		pos++;
+		if (pos >= n)
+			return (NULL);
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
+	return (NULL);
 }

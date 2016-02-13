@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/11/26 20:53:48 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/12/14 17:54:34 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
-
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	while (lst)
 	{
-		if (*format == '%')
-		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
-		}
-		else
-			ft_putchar(*format);
-		format++;
+		(f)(lst);
+		lst = lst->next;
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
 }

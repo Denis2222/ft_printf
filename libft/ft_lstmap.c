@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/11/26 21:42:14 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/11/27 13:12:05 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
+	t_list	*new;
+	t_list	*begin_list;
 
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	begin_list = NULL;
+	if (!lst || !f)
+		return (NULL);
+	while (lst)
 	{
-		if (*format == '%')
+		if (!begin_list)
 		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
+			begin_list = (f)(lst);
+			lst = lst->next;
+			new = begin_list;
 		}
 		else
-			ft_putchar(*format);
-		format++;
+		{
+			new->next = (f)(lst);
+			new = new->next;
+			lst = lst->next;
+		}
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
+	return (begin_list);
 }

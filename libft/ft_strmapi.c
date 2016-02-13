@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/11/24 20:30:27 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/12/14 18:00:15 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
+	unsigned int	i;
+	int				len;
+	char			*str;
 
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	if (s == NULL || f == NULL)
+		return (NULL);
+	i = 0;
+	len = ft_strlen(s);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	while ((int)i < len)
 	{
-		if (*format == '%')
-		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
-		}
-		else
-			ft_putchar(*format);
-		format++;
+		str[i] = f(i, s[i]);
+		i++;
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
+	str[i] = '\0';
+	return (str);
 }

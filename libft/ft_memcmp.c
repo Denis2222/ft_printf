@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/11/23 12:28:38 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/12/14 17:55:37 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
+	unsigned char	*c1;
+	unsigned char	*c2;
+	size_t			i;
 
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	c1 = (unsigned char*)s1;
+	c2 = (unsigned char*)s2;
+	i = 0;
+	while (i < n)
 	{
-		if (*format == '%')
-		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
-		}
-		else
-			ft_putchar(*format);
-		format++;
+		if (c1[i] != c2[i])
+			return (c1[i] - c2[i]);
+		i++;
 	}
-	va_end(pa);
-
-	debugprintf(pf);
 	return (0);
 }

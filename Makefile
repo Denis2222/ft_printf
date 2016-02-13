@@ -1,22 +1,27 @@
-SRCS = ft_putchar.c \
-	   ft_putstr.c \
-	   ft_strlen.c \
-	   ft_putnbr.c \
+SRCS = t_opts.c \
+	   ft_printf.c \
 	   t_opts.c \
-	   ft_printf.c
+	   t_printf.c
 
 NAME = libftprintf.a
 GCC_FLAGS = -Wall -Werror -Wextra
 CC = gcc $(GCC_FLAGS)
 SRCDIR = ./
-OBJDIR = ./
+OBJDIR = ./objs/
 AR = ar -cq
 RM = rm -rf
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+LIBFT = ./libft/libft.a
 
-all: clean $(NAME) test
-$(NAME): $(OBJS)
-	@$(AR) $@ $^
+
+all: $(NAME) test
+
+$(LIBFT):
+	make -C libft
+	echo $(SRC_LIB_O)
+
+$(NAME): $(OBJS) $(LIBFT)
+	@$(AR) $@ $^ ./libft/*.o
 	@echo "Link $^"
 	@ranlib $@
 	@echo "[$@] Complete"
@@ -27,7 +32,7 @@ $(addprefix $(OBJDIR)/, %.o): $(addprefix $(SRCDIR)/, %.c)
 	@echo "[√]$^ "
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJDIR)
 
 fclean: clean
 	@$(RM) $(NAME)
@@ -35,5 +40,5 @@ fclean: clean
 re: fclean all
 
 test:
-	$(CC) $(NAME) main.c -o printf
-	./printf "toto"
+	$(CC) main.c $(NAME) -o printf
+	./printf "Hello World"

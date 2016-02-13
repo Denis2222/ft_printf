@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/11/23 13:44:19 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/12/14 18:03:54 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+int		ft_tolower(int c)
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
-
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	if (ft_isalpha(c) && c > 64 && c < 91)
 	{
-		if (*format == '%')
-		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
-		}
-		else
-			ft_putchar(*format);
-		format++;
+		return (c + 32);
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
+	return (c);
 }

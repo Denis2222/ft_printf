@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/11/23 11:29:56 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/12/14 17:58:45 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+char	*ft_strcat(char *dest, const char *src)
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
+	int	x;
+	int	y;
 
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	x = ft_strlen(dest);
+	y = 0;
+	while (src[y])
 	{
-		if (*format == '%')
-		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
-		}
-		else
-			ft_putchar(*format);
-		format++;
+		dest[x + y] = src[y];
+		y++;
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
+	dest[x + y] = '\0';
+	return (dest);
 }

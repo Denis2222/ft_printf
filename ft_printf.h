@@ -4,30 +4,41 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "libft/libft.h"
 
-typedef struct	s_printf_option
+int					ft_printf(char *format, ...);
+
+typedef struct		s_opts
 {
-	char		flag;
-	int			width;
-	int			width0;
-	int			precision;
-	int			precisionn;
-	char		modify;
-	char		type;
-	char		*opts;
-}				t_opts;
+	char			*str;
+	int				length;
 
-int	ft_printf(char *format, ...);
+	char			type;
+	char			flag;
+	int				width;
+	int				width0;
+	int				precision;
+	int				precisionn;
+	char			modify;
 
-int	ft_strlen(char *str);
+	struct s_opts	*next;
+}					t_opts;
 
-int	ft_putchar(char c);
-int	ft_putstr(char *str);
-int	ft_putnbr(int nb);
-char	*ft_strchr(const char *s, int c);
+t_opts				*newopts(char *format);
+t_opts				*addopts(t_opts **lst, t_opts *new);
+void				renderopts(t_opts *opts, va_list *pa);
+void				initopts(t_opts *opts);
+int					optsflag(t_opts *opts, char *str);
 
-void	initopts(t_opts *opts);
-int		optsflag(t_opts *opts, char *str);
+typedef struct		s_ftprintf
+{
+	char			*format;
+	t_opts			*opts;
+}					t_printf;
 
+t_printf			*newprintf(char *format);
+void	debugprintf(t_printf *pf);
+
+int					choose(va_list *pa, char *format);
 
 #endif

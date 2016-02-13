@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/11/24 19:06:14 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/11/25 14:28:22 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <string.h>
+#include <stdlib.h>
 
-int	ft_printf(char *format, ...)
+void	*ft_memalloc(size_t size)
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
+	char *mem;
 
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	mem = malloc(sizeof(char) * size);
+	if (!mem)
+		return (NULL);
+	while (size-- > 0)
 	{
-		if (*format == '%')
-		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
-		}
-		else
-			ft_putchar(*format);
-		format++;
+		mem[size] = 0;
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
+	return ((void*)mem);
 }

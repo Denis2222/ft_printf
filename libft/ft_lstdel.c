@@ -1,40 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:24 by dmoureu-         ###   ########.fr       */
+/*   Created: 2015/11/26 19:48:35 by dmoureu-          #+#    #+#             */
+/*   Updated: 2015/12/14 18:09:00 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(char *format, ...)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	va_list		pa;
-	t_printf	*pf;
-	t_opts		*new;
-
-	pf = newprintf(format);
-	va_start(pa, format);
-	while (*format != '\0')
+	if (del && *alst)
 	{
-		if (*format == '%')
-		{
-			new = newopts(format);
-			renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
-			format += new->length;
-		}
-		else
-			ft_putchar(*format);
-		format++;
+		ft_lstdel(&((*alst)->next), del);
+		ft_lstdelone(alst, del);
 	}
-	va_end(pa);
-
-	debugprintf(pf);
-	return (0);
 }
