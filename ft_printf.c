@@ -9,33 +9,37 @@ int	choose(va_list *pa, char *format)
 	char	c;
 
 	initopts(&opts);
-	if (optsflag(&opts, format))
-		format++;
+	optsflag(&opts, format);
+	//	(*format)++;
 	nb = 0;
 	if (*format == '%')
+	{
 		nb += ft_putchar('%');
+		//(*format)++;
+	}
 	else if (*format == 'c')
 	{
 		c = va_arg(*pa, int);
 		nb += ft_putchar(c);
+		//(*format)++;
 	}
 	else if (*format == 'd')
 	{
 		n = va_arg(*pa, int);
 		nb += ft_putnbr(n);
+		//(*format)++;
 	}
 	else if (*format == 's')
 	{
 		s = va_arg(*pa, char *);
 		nb += ft_putstr(s);
+		//(*format)++;
 	}
-	format++;
 	return (nb);
 }
 
 int	ft_printf(char *format, ...)
 {
-	//t_opts	*opts;
 	va_list	pa;
 	int		nb;
 

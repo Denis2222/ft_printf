@@ -35,5 +35,5 @@ fclean: clean
 re: fclean all
 
 test:
-	$(CC) $(NAME) main.c -o exe
-	./exe "toto"
+	$(CC) $(NAME) main.c -o printf
+	./printf "toto"
