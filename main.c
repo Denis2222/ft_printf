@@ -10,8 +10,8 @@ int	main(int ac, char **av)
 	(void)av;
 	if (ac == 2)
 	{
-		ft_printf("%#.0s    %c%d", av[1], '@', 2);
-		ft_putnbr(printf("|%s|\n","tt"));
+		ft_printf("%10.11s    %-c%d", av[1], '@', 2);
+		ft_putnbr(printf("|%#x|\n",2235798));
 	}
 	else
 	{

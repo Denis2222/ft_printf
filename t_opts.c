@@ -28,8 +28,51 @@ int	isflag(char c)
 	return (0);
 }
 
+void	analyseflags(t_opts *opts)
+{
+	char *str;
+	str = opts->str;
+	while (!isflag(*str) && *str)
+		str++;
+	if (isflag(*str))
+		opts->flag = *str;
+}
+
+void	analysewidth(t_opts *opts)
+{
+	char *str;
+	int	startwidth;
+	int	endwidth;
+	int	i;
+
+	str = opts->str;
+	i = 0;
+	startwidth = 0;
+	endwidth = 0;
+	while (str[i] && str[i] != '.')
+	{
+		if (ft_isdigit(str[i]) && startwidth == 0)
+		{
+			startwidth = i;
+			endwidth = i;
+		}
+		else if(ft_isdigit(str[i]))
+			endwidth = i;
+		i++;
+	}
+
+	ft_putstr("analysewidth:");
+	ft_putnbr(startwidth);
+	ft_putstr(" ");
+	ft_putnbr(endwidth);
+	ft_putstr("^");
+
+}
+
 void	analyseopts(t_opts *opts)
 {
+	analyseflags(opts);
+	analysewidth(opts);
 }
 
 t_opts	*newopts(char *format)

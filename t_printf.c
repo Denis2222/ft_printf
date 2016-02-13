@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 19:24:55 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 20:47:52 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/13 21:13:34 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,12 @@ void	debugprintf(t_printf *pf)
 	opts = pf->opts;
 	while (opts)
 	{
-		ft_putstr("[");
+		ft_putstr("[ opts->str:");
 		ft_putstr(opts->str);
-		ft_putstr("type:");
+		ft_putstr(" type:");
 		ft_putchar(opts->type);
+		ft_putstr(" flag:");
+		ft_putchar(opts->flag);
 		ft_putendl("]");
 		opts = opts->next;
 	}
