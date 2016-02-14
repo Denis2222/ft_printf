@@ -42,6 +42,20 @@ void	debugprintf(t_printf *pf)
 		ft_putchar(opts->type);
 		ft_putstr(" flag:");
 		ft_putchar(opts->flag);
+		ft_putstr(" width:");
+		ft_putnbr(opts->width);
+		if (opts->width0)
+			ft_putstr(" &0 ");
+		if (opts->precision)
+		{
+			ft_putstr(" precision:");
+			ft_putnbr(opts->precisionn);
+		}
+		if (opts->modify)
+		{
+			ft_putstr(" mod:");
+			ft_putstr(opts->modify);
+		}
 		ft_putendl("]");
 		opts = opts->next;
 	}

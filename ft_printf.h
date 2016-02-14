@@ -19,7 +19,7 @@ typedef struct		s_opts
 	int				width0;
 	int				precision;
 	int				precisionn;
-	char			modify;
+	char			*modify;
 
 	struct s_opts	*next;
 }					t_opts;
