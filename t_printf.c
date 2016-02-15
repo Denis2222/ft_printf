@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 19:24:55 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/13 21:13:34 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/15 19:09:09 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void	debugprintf(t_printf *pf)
 			ft_putstr(" mod:");
 			ft_putstr(opts->modify);
 		}
+		ft_putstr(" pos:");
+		ft_putnbr(opts->formatstart);
+		ft_putstr(" ");
+		ft_putnbr(opts->formatend);
 		ft_putendl("]");
 		opts = opts->next;
 	}

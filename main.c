@@ -10,8 +10,10 @@ int	main(int ac, char **av)
 	(void)av;
 	if (ac == 2)
 	{
-		ft_printf("%0910.11hhs    %-c%d", av[1], '@', 2);
+		ft_printf("debut  | %s | %S | %c | %d", " char * abcd", L"wchar_t *𝛌 🦂  𐎍 ", '@', 2);
 		ft_putnbr(printf("|%#x|\n",2235798));
+
+		printf("𝛌 🦂 莨 abcd 𐎍  ");
 	}
 	else
 	{

@@ -2,6 +2,8 @@
 
 void	initopts(t_opts *opts)
 {
+	opts->formatstart = 0;
+	opts->formatend = 0;
 	opts->type = 0;
 	opts->flag = 0;
 	opts->width = 0;
@@ -122,7 +124,7 @@ void	analyseopts(t_opts *opts)
 	analysemod(opts);
 }
 
-t_opts	*newopts(char *format)
+t_opts	*newopts(char *format, int pos)
 {
 	t_opts	*opts;
 	int		length;
@@ -139,6 +141,8 @@ t_opts	*newopts(char *format)
 	opts->str = ft_strnew(length + 1);
 	opts->str = ft_strncpy(opts->str, startopts, length + 1);
 	initopts(opts);
+	opts->formatstart = pos;
+	opts->formatend = pos + length;
 	opts->type = opts->str[length];
 	opts->length = length;
 	analyseopts(opts);
@@ -150,6 +154,7 @@ t_opts	*newopts(char *format)
 void	renderopts(t_opts *opts, va_list *pa)
 {
 	char	*s;
+	wchar_t	*w;
 	char	c;
 	int		n;
 
@@ -169,8 +174,13 @@ void	renderopts(t_opts *opts, va_list *pa)
 	}
 	else if (opts->type == 's')
 	{
-		s = va_arg(*pa, char *);
+		s = (char *)va_arg(*pa, char *);
 		ft_putstr(s);
+	}
+	else if (opts->type == 'S')
+	{
+		w = va_arg(*pa, wchar_t *);
+		ft_putwstr(w);
 	}
 }
 

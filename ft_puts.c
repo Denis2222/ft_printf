@@ -57,6 +57,11 @@ int		ft_wstrlen(wchar_t *wstr)
 	return (nbwrite);
 }
 
+void	ft_putwchar(wchar_t c)
+{
+	ft_putwchar_fd(c, 1);
+}
+
 void	ft_putwstr(wchar_t *wstr)
 {
 	int	i;
@@ -67,9 +72,4 @@ void	ft_putwstr(wchar_t *wstr)
 		ft_putwchar(wstr[i]);
 		i++;
 	}
-}
-
-void	ft_putwchar(wchar_t c)
-{
-	ft_putwchar_fd(c, 1);
 }
