@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/02/16 14:02:08 by dmoureu-          #+#    #+#             */
+/*   Updated: 2016/02/16 14:39:33 by dmoureu-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include <stdio.h>
 
@@ -10,21 +22,14 @@ int	main(int ac, char **av)
 	(void)av;
 	if (ac == 2)
 	{
-		ft_printf("debut 𝛌 α 🦂 莨 ab %S ", L" 𝛌 α 🦂 莨 a");
+		ft_putnbr(ft_printf("Hello %s", "World"));
 //		ft_putnbr(printf("|%*s|\n", 30, "toto"));
-//		printf("%120s","𝛌α🦂TOTO");
+//		printf("%ld",2110111111111111111);
 	}
 	else
 	{
 		ft_printf(av[1], av[2], av[3]);
 	}
-
-ft_putstr("\n");
-
-	ft_putstr(ft_strminn("𝛌α🦂TOTO", 120, 1, ' '));
-	ft_putstr(ft_strmaxn("TOTO", 2));
-
-ft_putstr("\n");
 
 	return (0);
 }

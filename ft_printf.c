@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/15 19:09:49 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/16 14:39:32 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,32 @@ int	ft_printf(char *format, ...)
 	t_printf	*pf;
 	t_opts		*new;
 	int			pos;
+	int			len;
 
+	len = 0;
 	pos = 0;
 	pf = newprintf(format);
 	va_start(pa, format);
-	while (*format != '\0')
+	while (*format)
 	{
 		if (*format == '%')
 		{
 			new = newopts(format, pos);
-			renderopts(new, &pa);
+			len += renderopts(new, &pa);
 			pf->opts = addopts(&pf->opts, new);
 			format += new->length;
 			pos += new->length;
 		}
 		else
+		{
+			len++;
 			ft_putchar(*format);
+		}
 		format++;
 		pos++;
 	}
 	va_end(pa);
 
-	debugprintf(pf);
-	return (0);
+	//debugprintf(pf);
+	return (len);
 }

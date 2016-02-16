@@ -49,6 +49,7 @@ void	analysewidth(t_opts *opts)
 	char	*width;
 	int		u;
 
+//	ft_putstr("analyse opts");
 	str = opts->str;
 	i = 0;
 	startwidth = 0;
@@ -79,6 +80,7 @@ void	analysewidth(t_opts *opts)
 		opts->width0 = 1;
 	opts->width = ft_atoi(width);
 	free(width);
+//	ft_putstr("fin analyse opts");
 }
 
 void	analyseprecision(t_opts *opts)
@@ -130,6 +132,7 @@ t_opts	*newopts(char *format, int pos)
 	int		length;
 	char	*startopts;
 
+//	ft_putstr("newopts");
 	startopts = format;
 	opts = (t_opts*)malloc(sizeof(t_opts));
 	length = 0;
@@ -147,41 +150,54 @@ t_opts	*newopts(char *format, int pos)
 	opts->length = length;
 	analyseopts(opts);
 	opts->next = NULL;
+//	ft_putstr("fin new opts");
 
 	return (opts);
 }
 
-void	renderopts(t_opts *opts, va_list *pa)
+int	renderopts(t_opts *opts, va_list *pa)
 {
+	int		len;
 	char	*s;
 	wchar_t	*w;
 	char	c;
 	int		n;
 
+//	ft_putstr("render opts");
+	len = 0;
 	if (opts->type == '%')
 	{
+		len++;
 		ft_putchar('%');
 	}
 	else if (opts->type == 'c')
 	{
+		len++;
 		c = va_arg(*pa, int);
 		ft_putchar(c);
 	}
 	else if (opts->type == 'd')
 	{
 		n = va_arg(*pa, int);
-		ft_putnbr(n);
+		s = ft_itoa_base(n, 10);
+		len += ft_strlen(s);
+		ft_putstr(s);
 	}
 	else if (opts->type == 's')
 	{
 		s = (char *)va_arg(*pa, char *);
 		ft_putstr(s);
+		len += ft_strlen(s);
 	}
 	else if (opts->type == 'S')
 	{
 		w = va_arg(*pa, wchar_t *);
+		len += ft_wstrlen(w);
 		ft_putwstr(w);
 	}
+//	ft_putstr("fin render opts");
+
+	return (len);
 }
 
 t_opts	*addopts(t_opts **lst, t_opts *new)
@@ -189,6 +205,7 @@ t_opts	*addopts(t_opts **lst, t_opts *new)
 	t_opts	*beginlst;
 	t_opts	*current;
 
+//	ft_putstr("add opts");
 	beginlst = *lst;
 	current = beginlst;
 	if (!*lst)
@@ -199,6 +216,7 @@ t_opts	*addopts(t_opts **lst, t_opts *new)
 			current = current->next;
 		current->next = new;
 	}
+//	ft_putstr("fin add opts");
 	return (beginlst);
 }
 

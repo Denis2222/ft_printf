@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
+/*   Updated: 2016/02/16 14:18:51 by dmoureu-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -28,7 +40,7 @@ typedef struct		s_opts
 
 t_opts				*newopts(char *format, int pos);
 t_opts				*addopts(t_opts **lst, t_opts *new);
-void				renderopts(t_opts *opts, va_list *pa);
+int					renderopts(t_opts *opts, va_list *pa);
 void				initopts(t_opts *opts);
 int					optsflag(t_opts *opts, char *str);
 
@@ -48,6 +60,8 @@ int		ft_wcharlen(wchar_t c);
 int		ft_wstrlen(wchar_t *wstr);
 void	ft_putwchar(wchar_t c);
 void	ft_putwstr(wchar_t *wstr);
+
+char	*ft_itoa_base(long long int value, int base);
 
 char *ft_strminn(char *str, int size, int align, char c);
 char *ft_strmaxn(char *str, int size);
