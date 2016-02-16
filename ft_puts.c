@@ -73,3 +73,49 @@ void	ft_putwstr(wchar_t *wstr)
 		i++;
 	}
 }
+
+char *ft_strminn(char *str, int size, int align, char c)
+{
+	int		strlen;
+	char	*out;
+	int		i;
+
+	i = 0;
+	strlen = ft_strlen(str);
+	if (strlen < size)
+	{
+		out = ft_strnew(size);
+		if (align)
+		{
+			while (i < size - strlen)
+				out[i++] = c;
+			out = ft_strcat(out, str);
+		}
+		else
+		{
+			out = ft_strcat(out, str);
+			i = ft_strlen(out);
+			while (i < size)
+				out[i++] = c;
+		}
+	}
+	else
+	{
+		out = str;
+	}
+	return (out);
+}
+
+char *ft_strmaxn(char *str, int size)
+{
+	char *out;
+
+	if (ft_strlen(str) > size)
+	{
+		out = ft_strnew(size);
+		ft_strncpy(out, str, size);
+	}
+	else
+		out = str;
+	return (out);
+}

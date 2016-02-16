@@ -49,5 +49,7 @@ int		ft_wstrlen(wchar_t *wstr);
 void	ft_putwchar(wchar_t c);
 void	ft_putwstr(wchar_t *wstr);
 
+char *ft_strminn(char *str, int size, int align, char c);
+char *ft_strmaxn(char *str, int size);
 
 #endif

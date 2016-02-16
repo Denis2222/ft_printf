@@ -10,14 +10,21 @@ int	main(int ac, char **av)
 	(void)av;
 	if (ac == 2)
 	{
-		ft_printf("debut  | %s | %S | %c | %d", " char * abcd", L"wchar_t *𝛌 🦂  𐎍 ", '@', 2);
-		ft_putnbr(printf("|%#x|\n",2235798));
-
-		printf("𝛌 🦂 莨 abcd 𐎍  ");
+		ft_printf("debut 𝛌 α 🦂 莨 ab %S ", L" 𝛌 α 🦂 莨 a");
+//		ft_putnbr(printf("|%*s|\n", 30, "toto"));
+//		printf("%120s","𝛌α🦂TOTO");
 	}
 	else
 	{
 		ft_printf(av[1], av[2], av[3]);
 	}
+
+ft_putstr("\n");
+
+	ft_putstr(ft_strminn("𝛌α🦂TOTO", 120, 1, ' '));
+	ft_putstr(ft_strmaxn("TOTO", 2));
+
+ft_putstr("\n");
+
 	return (0);
 }
