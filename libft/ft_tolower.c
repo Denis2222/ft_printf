@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 13:44:19 by dmoureu-          #+#    #+#             */
-/*   Updated: 2015/12/14 18:03:54 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/16 15:54:28 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,17 @@ int		ft_tolower(int c)
 		return (c + 32);
 	}
 	return (c);
+}
+
+char	*ft_strtolower(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	return (str);
 }

@@ -2,6 +2,7 @@ SRCS = t_opts.c \
 	   ft_printf.c \
 	   ft_puts.c \
 	   t_opts.c \
+	   t_opts_tools.c \
 	   ft_itoa_base.c \
 	   t_printf.c
 
@@ -9,7 +10,7 @@ NAME = libftprintf.a
 GCC_FLAGS = -Wall -Werror -Wextra
 CC = gcc # $(GCC_FLAGS)
 SRCDIR = ./
-OBJDIR = ./objs/
+OBJDIR = ./objs
 AR = ar -cq
 RM = rm -rf
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))

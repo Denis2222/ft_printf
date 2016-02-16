@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/16 14:18:51 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/16 16:11:10 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,27 @@ typedef struct		s_ftprintf
 }					t_printf;
 
 t_printf			*newprintf(char *format);
-void	debugprintf(t_printf *pf);
+void				debugprintf(t_printf *pf);
 
 int					choose(va_list *pa, char *format);
 
-void	ft_putwchar_fd(wchar_t chr, int fd);
-int		ft_wcharlen(wchar_t c);
-int		ft_wstrlen(wchar_t *wstr);
-void	ft_putwchar(wchar_t c);
-void	ft_putwstr(wchar_t *wstr);
+void				ft_putwchar_fd(wchar_t chr, int fd);
+int					ft_wcharlen(wchar_t c);
+int					ft_wstrlen(wchar_t *wstr);
+void				ft_putwchar(wchar_t c);
+void				ft_putwstr(wchar_t *wstr);
 
-char	*ft_itoa_base(long long int value, int base);
+char				*ft_itoa_base(long long int value, int base);
 
-char *ft_strminn(char *str, int size, int align, char c);
-char *ft_strmaxn(char *str, int size);
+char				*ft_strminn(char *str, int size, int align, char c);
+char				*ft_strmaxn(char *str, int size);
+
+int					istype(char c);
+int					isflag(char c);
+void				analyseflags(t_opts *opts);
+void				analysewidth(t_opts *opts);
+void				analyseprecision(t_opts *opts);
+void				analysemod(t_opts *opts);
+void				analyseopts(t_opts *opts);
 
 #endif
