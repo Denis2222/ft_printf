@@ -39,10 +39,15 @@ clean:
 	@$(RM) $(OBJDIR)
 
 fclean: clean
+	make -C libft fclean
 	@$(RM) $(NAME)
+	$(RM) printf
+	$(RM) ./printf.dSYM
+
 
 re: fclean all
 
 test:
+	$(RM) printf
 	$(CC) main.c $(NAME) -o printf
 	./printf "Hello World"
