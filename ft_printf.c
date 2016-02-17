@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/16 14:39:32 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/17 13:48:32 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int	ft_printf(char *format, ...)
 	}
 	va_end(pa);
 
-	//debugprintf(pf);
+	debugprintf(pf);
 	return (len);
 }

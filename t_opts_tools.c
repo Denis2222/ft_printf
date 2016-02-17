@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/16 16:18:20 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/17 13:50:02 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,21 @@ int	isflag(char c)
 	if (ft_strchr(flags, c))
 			return (1);
 	return (0);
+}
+
+void	analysemod(t_opts *opts)
+{
+	char	flags[6][4] = {"hh", "h", "ll", "l", "j", "z"};
+	int		i;
+
+	i = 0;
+	(void)opts;
+	while (flags[i] && i < 6 && !opts->modify)
+	{
+		if (ft_strstr(opts->str, flags[i]))
+			opts->modify = ft_strdup(flags[i]);
+		i++;
+	}
 }
 
 void	analyseflags(t_opts *opts)
@@ -96,21 +111,6 @@ void	analyseprecision(t_opts *opts)
 		}
 		else
 			opts->precision = 1;
-	}
-}
-
-void	analysemod(t_opts *opts)
-{
-	char	flags[6][4] = {"hh", "h", "l", "ll", "j", "z"};
-	int		i;
-
-	i = 0;
-	(void)opts;
-	while (flags[i] && i < 6 && !opts->modify)
-	{
-		if (ft_strstr(opts->str, flags[i]))
-			opts->modify = ft_strdup(flags[i]);
-		i++;
 	}
 }
 
