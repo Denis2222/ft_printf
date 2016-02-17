@@ -18,36 +18,34 @@ OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 LIBFT = ./libft/libft.a
 
 
-all: $(NAME) test
+all: $(NAME) test clean
 
 $(LIBFT):
-	make -C libft
-	echo $(SRC_LIB_O)
+	@make -C libft
+	@echo $(SRC_LIB_O)
 
 $(NAME): $(OBJS) $(LIBFT)
 	@$(AR) $@ $^ ./libft/*.o
-	@echo "Link $^"
+	@#echo "Link $^"
 	@ranlib $@
-	@echo "[$@] Complete"
+	@#echo "[$@] Complete"
 
 $(addprefix $(OBJDIR)/, %.o): $(addprefix $(SRCDIR)/, %.c)
 	@mkdir -p $(OBJDIR)
 	@$(CC) -o $@ -c $^
-	@echo "[√]$^ "
 
 clean:
+	@$(RM) $(NAME)
 	@$(RM) $(OBJDIR)
 
 fclean: clean
-	make -C libft fclean
-	@$(RM) $(NAME)
-	$(RM) printf
-	$(RM) ./printf.dSYM
-
+	@make -C libft fclean
+	@$(RM) printf
+	@$(RM) ./printf.dSYM
 
 re: fclean all
 
 test:
-	$(RM) printf
-	$(CC) main.c $(NAME) -o printf
+	@$(RM) printf
+	@$(CC) main.c $(NAME) -o printf
 	./printf "Hello World"

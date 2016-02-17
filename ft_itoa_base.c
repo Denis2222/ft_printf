@@ -6,15 +6,15 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 11:06:49 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/16 11:54:59 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:42:38 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_itoa_base_length(long long int value, int base)
+int		ft_itoa_base_length(intmax_t value, int base)
 {
-	int	nb;
+	intmax_t	nb;
 
 	nb = 1;
 	while (value >= base)
@@ -25,11 +25,11 @@ int		ft_itoa_base_length(long long int value, int base)
 	return (nb);
 }
 
-char	*ft_itoa_base(long long int value, int base)
+char	*ft_itoa_base(intmax_t value, int base)
 {
 	int				sign;
 	char			*str;
-	unsigned int	nb;
+	intmax_t		nb;
 	int				length;
 	int				i;
 	char			tab[16] = "0123456789ABCDEF";

@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/17 13:50:02 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/17 16:35:20 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,13 @@ void	analysemod(t_opts *opts)
 	while (flags[i] && i < 6 && !opts->modify)
 	{
 		if (ft_strstr(opts->str, flags[i]))
+		{
 			opts->modify = ft_strdup(flags[i]);
+			return ;
+		}
 		i++;
 	}
+	opts->modify = ft_strdup("");
 }
 
 void	analyseflags(t_opts *opts)

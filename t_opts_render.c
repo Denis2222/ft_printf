@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/17 14:38:19 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:57:31 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,29 @@
 
 int	renderoptsnumeric(t_opts *opts, va_list *pa)
 {
-	long long int	n;
-	char	*s;
-	int		len;
-
-	if (ft_strcmp(opts->modify, "hh") && (opts->type == 'd' || opts->type == 'i'))
+	intmax_t		n;
+	char			*s;
+	int				len;
+	
+	if (opts->type == 'd' || opts->type == 'i')
 	{
-		n = (va_arg(*pa, int));
-		n = n % 256;
-		ft_putstr("n:");
-		ft_putnbr(n);
-		ft_putstr("**");
+		if (!ft_strcmp(opts->modify, "hh"))
+			n = (char)(va_arg(*pa, intmax_t));
+		else if (!ft_strcmp(opts->modify, "h"))
+			n = (short)va_arg(*pa, intmax_t);
+		else if (!ft_strcmp(opts->modify, "l"))
+		{
+			n = (long)va_arg(*pa, intmax_t);
+		}
+		else if (!ft_strcmp(opts->modify, "ll"))
+			n = (long long)va_arg(*pa, intmax_t);
+		else if (!ft_strcmp(opts->modify, ""))
+			n = (int)(va_arg(*pa, intmax_t));
 	}
-	else if (ft_strcmp(opts->modify, "h") && (opts->type == 'd' || opts->type == 'i'))
-		n = (short)va_arg(*pa, int);
-	else if (ft_strcmp(opts->modify, "l") && (opts->type == 'd' || opts->type == 'i'))
-		n = (long int)va_arg(*pa, long int);
-	else if (ft_strcmp(opts->modify, "ll") && (opts->type == 'd' || opts->type == 'i'))
-		n = (long long int)va_arg(*pa, long long int);
 	else
-		n = (long long int)va_arg(*pa, long long int);
+	{
+		n = (int)va_arg(*pa, int);
+	}
 
 	len = 0;
 	if (opts->type == 'd' || opts->type == 'i')
@@ -72,7 +75,7 @@ int	renderoptsalpha(t_opts *opts, va_list *pa)
 	}
 	else if (opts->type == 's')
 	{
-		s = (char *)va_arg(*pa, char *);
+		s = va_arg(*pa, char *);
 		ft_putstr(s);
 		len += ft_strlen(s);
 	}

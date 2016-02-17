@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/17 13:52:18 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:57:34 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int					ft_wstrlen(wchar_t *wstr);
 void				ft_putwchar(wchar_t c);
 void				ft_putwstr(wchar_t *wstr);
 
-char				*ft_itoa_base(long long int value, int base);
+char				*ft_itoa_base(intmax_t value, int base);
 
 char				*ft_strminn(char *str, int size, int align, char c);
 char				*ft_strmaxn(char *str, int size);

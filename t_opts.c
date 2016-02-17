@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/17 13:51:37 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:33:26 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,14 @@ int	renderopts(t_opts *opts, va_list *pa)
 	int		len;
 
 	len = 0;
-	len += renderoptsnumeric(opts, pa);
-	len += renderoptsalpha(opts, pa);
+	if (opts->type == 'd' || opts->type == 'i' ||
+		opts->type == 'o' || opts->type == 'O' ||
+		opts->type == 'x' || opts->type == 'X')
+		len += renderoptsnumeric(opts, pa);
+
+	if (opts->type == '%' || opts->type == 'c' ||
+		opts->type == 's' || opts->type == 'S')
+		len += renderoptsalpha(opts, pa);
 	return (len);
 }
 

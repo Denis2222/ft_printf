@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:02:08 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/17 14:25:17 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/17 17:57:30 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ int	main(int ac, char **av)
 	char *str;
 	if (ac == 2)
 	{
-		str =     ft_strdup("Hello %hhd|");
-		ft_putnbr(ft_printf(str, 260));
-		ft_putnbr(   printf(str, 260));
-//		printf("%ld",2110111111111111111);
+		str =     ft_strdup("Hello %ld|");
+		ft_printf(str, 915555555512222222 * 90);
+		ft_printf("\n");
+		   printf(str, 915555555512222222 * 90);
 	}
 	else if(ac == 4)
-	{
+{
 		ft_printf(av[1], av[2], ft_atoi(av[3]));
 	}
 
