@@ -6,15 +6,15 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 11:06:49 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/17 17:42:38 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/18 15:45:32 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_itoa_base_length(intmax_t value, int base)
+int		ft_itoa_base_length(uintmax_t value, int base)
 {
-	intmax_t	nb;
+	uintmax_t	nb;
 
 	nb = 1;
 	while (value >= base)
@@ -40,8 +40,8 @@ char	*ft_itoa_base(intmax_t value, int base)
 	if (base == 10 && value < 0)
 	{
 		sign = 1;
-		if (value < -2147483647)
-			return (ft_strdup("-2147483648"));
+//		if (value < -2147483647)
+//			return (ft_strdup("-2147483648"));
 		nb = value * -1;
 	}
 	else
@@ -65,3 +65,27 @@ char	*ft_itoa_base(intmax_t value, int base)
 		str[0] = '-';
 	return (str);
 }
+
+char	*ft_uitoa_base(uintmax_t value, int base)
+{
+	char			*str;
+	uintmax_t		nb;
+	int				length;
+	int				i;
+	char			tab[16] = "0123456789ABCDEF";
+
+	if (base > 16 || base < 2)
+		return (NULL);
+	length = ft_itoa_base_length(value, base);
+	str = (char*)malloc(sizeof(char) * (length + 1));
+	str[length] = '\0';
+	i = length - 1;
+	while (i >= 0)
+	{
+		str[i] = tab[value % base];
+		value = value / base;
+		i--;
+	}
+	return (str);
+}
+
