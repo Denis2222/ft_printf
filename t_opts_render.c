@@ -25,13 +25,33 @@ int	renderoptsnumeric(t_opts *opts, va_list *pa)
 		else if (!ft_strcmp(opts->modify, "h"))
 			n = (short)va_arg(*pa, intmax_t);
 		else if (!ft_strcmp(opts->modify, "l"))
-		{
 			n = (long)va_arg(*pa, intmax_t);
-		}
 		else if (!ft_strcmp(opts->modify, "ll"))
 			n = (long long)va_arg(*pa, intmax_t);
+		else if (!ft_strcmp(opts->modify, "t"))
+			n = (size_t)(va_arg(*pa, intmax_t));
+		else if (!ft_strcmp(opts->modify, "z"))
+			n = (intmax_t)(va_arg(*pa, intmax_t));
 		else if (!ft_strcmp(opts->modify, ""))
 			n = (int)(va_arg(*pa, intmax_t));
+	}
+	else if (opts->type == 'u' || opts->type == 'o' ||
+			 opts->type == 'x')
+	{
+		if (!ft_strcmp(opts->modify, "hh"))
+			n = (unsigned char)(va_arg(*pa, uintmax_t));
+		else if (!ft_strcmp(opts->modify, "h"))
+			n = (unsigned short)va_arg(*pa, uintmax_t);
+		else if (!ft_strcmp(opts->modify, "l"))
+			n = (unsigned long)va_arg(*pa, uintmax_t);
+		else if (!ft_strcmp(opts->modify, "ll"))
+			n = (unsigned long long)va_arg(*pa, uintmax_t);
+		else if (!ft_strcmp(opts->modify, "t"))
+			n = (size_t)(va_arg(*pa, uintmax_t));
+		else if (!ft_strcmp(opts->modify, "z"))
+			n = (uintmax_t)(va_arg(*pa, uintmax_t));
+		else if (!ft_strcmp(opts->modify, ""))
+			n = (unsigned int)(va_arg(*pa, uintmax_t));
 	}
 	else
 	{
