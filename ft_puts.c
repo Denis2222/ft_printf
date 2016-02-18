@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:42 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/16 14:01:44 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/18 16:42:26 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		ft_wstrlen(wchar_t *wstr)
 	while (wstr[i])
 	{
 		nbwrite += ft_wcharlen(wstr[i]);
+		i++;
 	}
 	return (nbwrite);
 }

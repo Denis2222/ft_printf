@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/18 16:04:26 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/18 17:13:05 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ char	*render_opts_char(t_opts *opts, va_list *pa)
 	else if (opts->type == 's')
 	{
 		s = va_arg(*pa, char *);
-		ft_putstr(s);
 	}
 	return (s);
 }

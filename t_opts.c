@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/18 16:07:23 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/18 17:13:15 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ int	renderopts(t_opts *opts, va_list *pa)
 	char	*str;
 	wchar_t	*wstr;
 
+
+	//ft_putstr("render");
+	str = NULL;
+	wstr = NULL;
 	if (opts->type == 'd' || opts->type == 'i')
 		str = render_opts_numeric_signed(opts, pa);
 
@@ -65,11 +69,23 @@ int	renderopts(t_opts *opts, va_list *pa)
 		str = render_opts_numeric_unsigned(opts, pa);
 
 	if (opts->type == '%' || opts->type == 'c' ||
-		opts->type == 's' || opts->type == 'S')
+		opts->type == 's')
 		str = render_opts_char(opts, pa);
 
-	ft_putstr(str);
-	return (ft_strlen(str));
+	if (opts->type == 'C' || opts->type == 'S')
+		wstr = render_opts_wchar(opts, pa);
+	
+	if (str)
+	{
+		ft_putstr(str);
+		return (ft_strlen(str));
+	}
+	else if (wstr)
+	{
+		ft_putwstr(wstr);
+		return (ft_wstrlen(wstr));
+	}
+	return (0);
 }
 
 t_opts	*addopts(t_opts **lst, t_opts *new)
