@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/18 16:06:50 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/19 16:23:49 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,14 @@ void				analysewidth(t_opts *opts);
 void				analyseprecision(t_opts *opts);
 void				analysemod(t_opts *opts);
 void				analyseopts(t_opts *opts);
-char				*render_opts_numeric_signed(t_opts *opts, va_list *pa);
-char				*render_opts_numeric_unsigned(t_opts *opts, va_list *pa);
+char				*render_opts_ptr(t_opts *opts, va_list *pa);
 char				*render_opts_char(t_opts *opts, va_list *pa);
 wchar_t				*render_opts_wchar(t_opts *opts, va_list *pa);
+char				*render_opts_numeric_signed(t_opts *opts, va_list *pa);
+char				*render_opts_numeric_unsigned(t_opts *opts, va_list *pa);
+
+char				*addhexachar(char *str);
+char				*applyprecision(t_opts *opts, char *str);
+char				*applywidth(t_opts *opts, char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/18 17:13:05 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/19 16:42:59 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*render_opts_numeric_unsigned(t_opts *opts, va_list *pa)
 		s = ft_uitoa_base(n, 10);
 	else if (opts->type == 'U')
 		s = ft_uitoa_base(n, 10);
+	s = applywidth(opts, s);
 	return (s);
 }
 
@@ -75,6 +76,7 @@ char	*render_opts_numeric_signed(t_opts *opts, va_list *pa)
 	}
 	if (opts->type == 'd' || opts->type == 'i')
 		s = ft_itoa_base(n, 10);
+	s = applywidth(opts, s);
 	return (s);
 }
 
@@ -97,6 +99,10 @@ char	*render_opts_char(t_opts *opts, va_list *pa)
 	else if (opts->type == 's')
 	{
 		s = va_arg(*pa, char *);
+		if (!s)
+			s = ft_strdup("(null)");
+		s = applyprecision(opts, s);
+		s = applywidth(opts, s);
 	}
 	return (s);
 }
@@ -117,4 +123,14 @@ wchar_t	*render_opts_wchar(t_opts *opts, va_list *pa)
 		w = va_arg(*pa, wchar_t *);
 	}
 	return (w);
+}
+
+char	*render_opts_ptr(t_opts *opts, va_list *pa)
+{
+	char		*s;
+	uintmax_t	ptr;
+
+	ptr = va_arg(*pa, uintmax_t);
+	s = ft_strtolower(addhexachar(ft_uitoa_base(ptr, 16)));
+	return (s);
 }

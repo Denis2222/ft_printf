@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/18 17:13:15 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/19 16:03:17 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_opts	*newopts(char *format, int pos)
 	startopts = format;
 	opts = (t_opts*)malloc(sizeof(t_opts));
 	length = 0;
-	while (!istype(*format))
+	while (!istype(*format) && !(length && *format == '%'))
 	{
 		length++;
 		format++;
@@ -74,6 +74,9 @@ int	renderopts(t_opts *opts, va_list *pa)
 
 	if (opts->type == 'C' || opts->type == 'S')
 		wstr = render_opts_wchar(opts, pa);
+	if (opts->type == 'p')
+		str = render_opts_ptr(opts, pa);
+	
 	
 	if (str)
 	{
@@ -84,6 +87,11 @@ int	renderopts(t_opts *opts, va_list *pa)
 	{
 		ft_putwstr(wstr);
 		return (ft_wstrlen(wstr));
+	}
+	else
+	{
+		ft_putstr("(null)");
+		return (ft_strlen("(null)"));
 	}
 	return (0);
 }

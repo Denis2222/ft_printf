@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:02:08 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/18 17:57:02 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/19 16:49:13 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,24 @@ int	main(int ac, char **av)
 	long	longmax;
 	unsigned long	ulongmax;
 	wchar_t *wstr;
+	char	*mstr;
+	char	*str2;
 
 	longmax = (922337203685477580 * 10);
 	ulongmax = longmax * 2 + 15;
 	if (ac == 2)
 	{
-		str = ft_strdup("%S");
-		   n = ft_printf("test unicode %S",L"拯救者15-ISK i7悦动版");
-		   ft_putnbr(n);
-		   n =    printf("test unicode %s","拯救者15-ISK i7悦动版");
-		   ft_putnbr(n);
-		   if (n == -1)
-				perror("");
+		mstr = 0;
+	
+		str = ft_strdup("%");
+		n =    printf("%");
+		ft_putstr("my pf:\n");
+		n = ft_printf("%");
+		ft_putstr("\n");
+		if (n == -1)
+			perror("");
+
+
 	}
 	else if(ac == 4)
 	{

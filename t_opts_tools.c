@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/18 16:04:29 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/19 16:37:53 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,4 +124,81 @@ void	analyseopts(t_opts *opts)
 	analysewidth(opts);
 	analyseprecision(opts);
 	analysemod(opts);
+}
+
+char	*addhexachar(char *str)
+{
+	int		length;
+	char	*new;
+	length = ft_strlen(str);
+
+	new = ft_strnew(length + 2);
+	new = ft_strcat(new, "0X");
+	new = ft_strcat(new, str);
+	return (new);
+}
+
+char	*applyprecision(t_opts *opts, char *str)
+{
+	char	*new;
+	if (opts->precision > 0)
+	{
+		new = ft_strnew(opts->precisionn);
+		new = ft_strncpy(new, str, opts->precisionn);
+		//ft_strdel(&str);
+		return (new);
+	}
+	else
+		return (str);
+}
+
+char	*straddnchar(char *str, int way, int n, char c)
+{
+	int		i;
+	int		length;
+	char	*new;
+	
+	length = ft_strlen(str);
+	new = ft_strnew(length + n);
+	i = 0;
+	if (way)
+	{
+		new = ft_strcpy(new, str);
+		while (i < n)
+		{
+			new[length + i] = c;
+			i++;
+		}
+	}
+	else
+	{
+		while (i < n)
+		{
+			new[i] = c;
+			i++;
+		}
+		new = ft_strcat(new, str);
+	}
+	//ft_strdel(&str);
+	return (new);
+}
+
+char	*applywidth(t_opts *opts, char *str)
+{
+	int		length;
+	int		way;
+	char	c;
+
+	c = ' ';
+	way = 0;
+	if (opts->flag == '-')
+		way = 1;
+	if (opts->width0)
+		c = '0';
+	length = ft_strlen(str);
+	if (opts->width > length)
+	{
+		str = straddnchar(str, way, opts->width - length, c);
+	}
+	return (str);
 }
