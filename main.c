@@ -6,12 +6,13 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:02:08 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/19 16:49:13 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/19 19:18:44 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 int	main(int ac, char **av)
 {
@@ -33,11 +34,11 @@ int	main(int ac, char **av)
 	{
 		mstr = 0;
 	
-		str = ft_strdup("%");
-		n =    printf("%");
-		ft_putstr("my pf:\n");
-		n = ft_printf("%");
-		ft_putstr("\n");
+		n = printf("%s", "暖");
+		n = printf("%S", L"暖");
+		n = printf("%ls", L"暖");
+		n = ft_printf("%ls, %ls", L"暖", L"ح");
+		//ft_putnbr(n);
 		if (n == -1)
 			perror("");
 

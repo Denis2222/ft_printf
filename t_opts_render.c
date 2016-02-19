@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/19 16:42:59 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/19 19:18:41 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@ char	*render_opts_numeric_unsigned(t_opts *opts, va_list *pa)
 	char			*s;
 	int				len;
 
-	if (opts->type == 'u' || opts->type == 'o' || opts->type == 'x')
+	if (opts->type == 'u' || opts->type == 'o' || opts->type == 'x'
+	 || opts->type == 'O' || opts->type == 'X' || opts->type == 'U')
 	{
 		if (!ft_strcmp(opts->modify, "hh"))
 			n = (unsigned char)(va_arg(*pa, uintmax_t));
 		else if (!ft_strcmp(opts->modify, "h"))
 			n = (unsigned short)va_arg(*pa, uintmax_t);
-		else if (!ft_strcmp(opts->modify, "l"))
+		else if (!ft_strcmp(opts->modify, "l") || opts->type == 'O' || opts->type == 'X' || opts->type == 'U')
 			n = (unsigned long)va_arg(*pa, uintmax_t);
 		else if (!ft_strcmp(opts->modify, "ll"))
 			n = (unsigned long long)va_arg(*pa, uintmax_t);
@@ -57,13 +58,13 @@ char	*render_opts_numeric_signed(t_opts *opts, va_list *pa)
 	char			*s;
 	int				len;
 
-	if (opts->type == 'd' || opts->type == 'i')
+	if (opts->type == 'd' || opts->type == 'i' || opts->type == 'D')
 	{
 		if (!ft_strcmp(opts->modify, "hh"))
 			n = (char)(va_arg(*pa, intmax_t));
 		else if (!ft_strcmp(opts->modify, "h"))
 			n = (short)va_arg(*pa, intmax_t);
-		else if (!ft_strcmp(opts->modify, "l"))
+		else if (!ft_strcmp(opts->modify, "l") || opts->type == 'D')
 			n = (long)va_arg(*pa, intmax_t);
 		else if (!ft_strcmp(opts->modify, "ll"))
 			n = (long long)va_arg(*pa, intmax_t);
@@ -74,7 +75,7 @@ char	*render_opts_numeric_signed(t_opts *opts, va_list *pa)
 		else if (!ft_strcmp(opts->modify, ""))
 			n = (int)(va_arg(*pa, intmax_t));
 	}
-	if (opts->type == 'd' || opts->type == 'i')
+	if (opts->type == 'd' || opts->type == 'i' || opts->type == 'D')
 		s = ft_itoa_base(n, 10);
 	s = applywidth(opts, s);
 	return (s);
@@ -112,13 +113,13 @@ wchar_t	*render_opts_wchar(t_opts *opts, va_list *pa)
 	wchar_t	*w;
 	char	c;
 
-	if (opts->type == 'C')
+	if (opts->type == 'C' || (opts->type == 'c' && !ft_strcmp(opts->modify, "l")))
 	{
 		w = (wchar_t*)malloc(sizeof(wchar_t) * 2);
 		w[0] = va_arg(*pa, int);
 		w[1] = '\0';
 	}
-	else if (opts->type == 'S')
+	else if (opts->type == 'S' || (opts->type == 's' && !ft_strcmp(opts->modify, "l")))
 	{
 		w = va_arg(*pa, wchar_t *);
 	}

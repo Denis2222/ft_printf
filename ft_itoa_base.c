@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 11:06:49 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/18 15:45:32 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/19 17:58:35 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ char	*ft_itoa_base(intmax_t value, int base)
 	if (base == 10 && value < 0)
 	{
 		sign = 1;
-//		if (value < -2147483647)
-//			return (ft_strdup("-2147483648"));
+		if (value < -9223372036854775807)
+			return (ft_strdup("-9223372036854775808"));
 		nb = value * -1;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/19 16:03:17 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/19 19:12:33 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	renderopts(t_opts *opts, va_list *pa)
 	//ft_putstr("render");
 	str = NULL;
 	wstr = NULL;
-	if (opts->type == 'd' || opts->type == 'i')
+	if (opts->type == 'd' || opts->type == 'i' || opts->type == 'D')
 		str = render_opts_numeric_signed(opts, pa);
 
 	if (opts->type == 'o' || opts->type == 'O' ||
@@ -68,12 +68,11 @@ int	renderopts(t_opts *opts, va_list *pa)
 		opts->type == 'u' || opts->type == 'U')
 		str = render_opts_numeric_unsigned(opts, pa);
 
-	if (opts->type == '%' || opts->type == 'c' ||
-		opts->type == 's')
+	if (opts->type == 'C' || opts->type == 'S' || ((!ft_strcmp(opts->modify, "l")) && (opts->type == 'c' || opts->type == 's')))
+		wstr = render_opts_wchar(opts, pa);
+	else if (opts->type == '%' || opts->type == 'c' || opts->type == 's')
 		str = render_opts_char(opts, pa);
 
-	if (opts->type == 'C' || opts->type == 'S')
-		wstr = render_opts_wchar(opts, pa);
 	if (opts->type == 'p')
 		str = render_opts_ptr(opts, pa);
 	
@@ -81,11 +80,15 @@ int	renderopts(t_opts *opts, va_list *pa)
 	if (str)
 	{
 		ft_putstr(str);
+		if (ft_strlen(str) == 0 && opts->type == 'c')
+			return (1);
 		return (ft_strlen(str));
 	}
 	else if (wstr)
 	{
 		ft_putwstr(wstr);
+		if (ft_wstrlen(wstr) == 0 && opts->type == 'C')
+			return (1);
 		return (ft_wstrlen(wstr));
 	}
 	else
