@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/19 19:12:33 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/21 18:45:15 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,14 @@ t_opts	*newopts(char *format, int pos)
 	length = 0;
 	while (!istype(*format) && !(length && *format == '%'))
 	{
-		length++;
-		format++;
+		if (isflag(*format) || ft_isdigit(*format) ||
+			ismod(*format) || *format == '%')
+		{
+			length++;
+			format++;
+		}
+		else
+			break;
 	}
 	opts->str = ft_strnew(length + 1);
 	opts->str = ft_strncpy(opts->str, startopts, length + 1);
@@ -75,7 +81,9 @@ int	renderopts(t_opts *opts, va_list *pa)
 
 	if (opts->type == 'p')
 		str = render_opts_ptr(opts, pa);
-	
+
+	if (!istype(opts->type))
+		str = render_opts_error(opts, pa);
 	
 	if (str)
 	{

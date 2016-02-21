@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:02:08 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/19 19:18:44 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/21 18:10:49 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,14 @@ int	main(int ac, char **av)
 	{
 		mstr = 0;
 	
-		n = printf("%s", "暖");
-		n = printf("%S", L"暖");
-		n = printf("%ls", L"暖");
-		n = ft_printf("%ls, %ls", L"暖", L"ح");
-		//ft_putnbr(n);
-		if (n == -1)
-			perror("");
-
-
+		ft_printf("ft_printf:\n");
+		n = ft_printf("{%10R}");
+		ft_putnbr(n);
+		ft_putendl("\n--------\nprintf:");
+		n =    printf("{%10R}", 2);
+		printf("%d", n);
+		//if (n == -1)
+		//	perror("");
 	}
 	else if(ac == 4)
 	{

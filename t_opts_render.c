@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/19 19:18:41 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/21 18:46:03 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@ char	*render_opts_numeric_unsigned(t_opts *opts, va_list *pa)
 	if (opts->type == 'u' || opts->type == 'o' || opts->type == 'x'
 	 || opts->type == 'O' || opts->type == 'X' || opts->type == 'U')
 	{
-		if (!ft_strcmp(opts->modify, "hh"))
+		if (!ft_strcmp(opts->modify, "l") || opts->type == 'O' || opts->type == 'U')
+			n = (unsigned long)va_arg(*pa, uintmax_t);
+		else if (!ft_strcmp(opts->modify, "hh"))
 			n = (unsigned char)(va_arg(*pa, uintmax_t));
 		else if (!ft_strcmp(opts->modify, "h"))
 			n = (unsigned short)va_arg(*pa, uintmax_t);
-		else if (!ft_strcmp(opts->modify, "l") || opts->type == 'O' || opts->type == 'X' || opts->type == 'U')
-			n = (unsigned long)va_arg(*pa, uintmax_t);
 		else if (!ft_strcmp(opts->modify, "ll"))
 			n = (unsigned long long)va_arg(*pa, uintmax_t);
-		else if (!ft_strcmp(opts->modify, "t"))
-			n = (size_t)(va_arg(*pa, uintmax_t));
 		else if (!ft_strcmp(opts->modify, "z"))
+			n = (size_t)(va_arg(*pa, uintmax_t));
+		else if (!ft_strcmp(opts->modify, "j"))
 			n = (uintmax_t)(va_arg(*pa, uintmax_t));
 		else if (!ft_strcmp(opts->modify, ""))
 			n = (unsigned int)(va_arg(*pa, uintmax_t));
 	}
 	if (opts->type == 'o')
-		s = ft_strtolower(ft_uitoa_base(n, 8));
+		s = ft_uitoa_base(n, 8);
 	else if (opts->type == 'O')
 		s = ft_uitoa_base(n, 8);
 	else if (opts->type == 'x')
@@ -60,17 +60,17 @@ char	*render_opts_numeric_signed(t_opts *opts, va_list *pa)
 
 	if (opts->type == 'd' || opts->type == 'i' || opts->type == 'D')
 	{
-		if (!ft_strcmp(opts->modify, "hh"))
+		if (!ft_strcmp(opts->modify, "l") || opts->type == 'D')
+			n = (long)va_arg(*pa, intmax_t);
+		else if (!ft_strcmp(opts->modify, "hh"))
 			n = (char)(va_arg(*pa, intmax_t));
 		else if (!ft_strcmp(opts->modify, "h"))
 			n = (short)va_arg(*pa, intmax_t);
-		else if (!ft_strcmp(opts->modify, "l") || opts->type == 'D')
-			n = (long)va_arg(*pa, intmax_t);
 		else if (!ft_strcmp(opts->modify, "ll"))
 			n = (long long)va_arg(*pa, intmax_t);
-		else if (!ft_strcmp(opts->modify, "t"))
-			n = (size_t)(va_arg(*pa, intmax_t));
 		else if (!ft_strcmp(opts->modify, "z"))
+			n = (size_t)(va_arg(*pa, intmax_t));
+		else if (!ft_strcmp(opts->modify, "j"))
 			n = (intmax_t)(va_arg(*pa, intmax_t));
 		else if (!ft_strcmp(opts->modify, ""))
 			n = (int)(va_arg(*pa, intmax_t));
@@ -96,6 +96,8 @@ char	*render_opts_char(t_opts *opts, va_list *pa)
 		c = va_arg(*pa, int);
 		s = ft_strdup(" ");
 		s[0] = c;
+		s = applyprecision(opts, s);
+		s = applywidth(opts, s);
 	}
 	else if (opts->type == 's')
 	{
@@ -105,6 +107,16 @@ char	*render_opts_char(t_opts *opts, va_list *pa)
 		s = applyprecision(opts, s);
 		s = applywidth(opts, s);
 	}
+	return (s);
+}
+
+char	*render_opts_error(t_opts *opts, va_list *pa)
+{
+	char	*s;
+
+	s = ft_strdup(" ");
+	s[0] = opts->str[ft_strlen(opts->str) - 1];
+	s = applywidth(opts, s);
 	return (s);
 }
 
@@ -133,5 +145,6 @@ char	*render_opts_ptr(t_opts *opts, va_list *pa)
 
 	ptr = va_arg(*pa, uintmax_t);
 	s = ft_strtolower(addhexachar(ft_uitoa_base(ptr, 16)));
+	s = applywidth(opts, s);
 	return (s);
 }

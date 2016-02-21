@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/19 16:23:49 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/21 18:32:22 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ char				*ft_strmaxn(char *str, int size);
 
 int					istype(char c);
 int					isflag(char c);
+int					ismod(char c);
 void				analyseflags(t_opts *opts);
 void				analysewidth(t_opts *opts);
 void				analyseprecision(t_opts *opts);
@@ -79,6 +80,7 @@ char				*render_opts_char(t_opts *opts, va_list *pa);
 wchar_t				*render_opts_wchar(t_opts *opts, va_list *pa);
 char				*render_opts_numeric_signed(t_opts *opts, va_list *pa);
 char				*render_opts_numeric_unsigned(t_opts *opts, va_list *pa);
+char				*render_opts_error(t_opts *opts, va_list *pa);
 
 char				*addhexachar(char *str);
 char				*applyprecision(t_opts *opts, char *str);
