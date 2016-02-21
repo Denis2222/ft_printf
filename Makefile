@@ -5,11 +5,14 @@ SRCS = t_opts.c \
 	   t_opts_tools.c \
 	   t_opts_render.c \
 	   ft_itoa_base.c \
+	   addchar.c \
+	   ft_wcs.c \
+	   t_opts_analyse.c \
 	   t_printf.c
 
 NAME = libftprintf.a
 GCC_FLAGS = -Wall -Werror -Wextra
-CC = gcc -g -Wno-format # $(GCC_FLAGS)
+CC = gcc -g # $(GCC_FLAGS)
 SRCDIR = ./
 OBJDIR = ./objs
 AR = ar -cq

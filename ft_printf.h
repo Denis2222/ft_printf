@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/21 18:32:22 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/22 00:31:35 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,13 @@ int					choose(va_list *pa, char *format);
 
 void				ft_putwchar_fd(wchar_t chr, int fd);
 int					ft_wcharlen(wchar_t c);
+int					ft_wcslen(wchar_t *wstr);
 int					ft_wstrlen(wchar_t *wstr);
+wchar_t				*ft_wcsnew(int n);
+wchar_t				*ft_wcscpy(wchar_t *dest, wchar_t *src);
+wchar_t				*ft_wcsdup(wchar_t * src);
+wchar_t				*ft_wcscat(wchar_t *dest, const wchar_t *src);
+
 void				ft_putwchar(wchar_t c);
 void				ft_putwstr(wchar_t *wstr);
 
@@ -82,8 +88,12 @@ char				*render_opts_numeric_signed(t_opts *opts, va_list *pa);
 char				*render_opts_numeric_unsigned(t_opts *opts, va_list *pa);
 char				*render_opts_error(t_opts *opts, va_list *pa);
 
+char				*straddnchar(char *str, int way, int n, char c);
+wchar_t				*wstraddnchar(wchar_t *wstr, int way, int n, char c);
+
 char				*addhexachar(char *str);
 char				*applyprecision(t_opts *opts, char *str);
 char				*applywidth(t_opts *opts, char *str);
+wchar_t				*applywidthwchar(t_opts *opts, wchar_t *wstr);
 
 #endif

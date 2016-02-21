@@ -6,13 +6,14 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:02:08 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/21 18:10:49 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/22 00:29:21 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 #include <limits.h>
+#include <locale.h>
 
 int	main(int ac, char **av)
 {
@@ -28,6 +29,7 @@ int	main(int ac, char **av)
 	char	*mstr;
 	char	*str2;
 
+	setlocale(LC_ALL,"en_US.UTF-8");
 	longmax = (922337203685477580 * 10);
 	ulongmax = longmax * 2 + 15;
 	if (ac == 2)
@@ -35,10 +37,10 @@ int	main(int ac, char **av)
 		mstr = 0;
 	
 		ft_printf("ft_printf:\n");
-		n = ft_printf("{%10R}");
+		n = ft_printf("{%10.4d}", 42);
 		ft_putnbr(n);
 		ft_putendl("\n--------\nprintf:");
-		n =    printf("{%10R}", 2);
+		n =    printf("{%10.4d}", 42);
 		printf("%d", n);
 		//if (n == -1)
 		//	perror("");
