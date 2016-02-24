@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/22 00:31:35 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/24 20:09:19 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ char				*ft_uitoa_base(uintmax_t value, int base);
 char				*ft_strminn(char *str, int size, int align, char c);
 char				*ft_strmaxn(char *str, int size);
 
+int					issigned(t_opts *opts);
+int					isunsigned(t_opts *opts);
+int					iswchar(t_opts *opts);
+int					ischar(t_opts *opts);
+int					isptr(t_opts *opts);
+
 int					istype(char c);
 int					isflag(char c);
 int					ismod(char c);
@@ -92,6 +98,7 @@ char				*straddnchar(char *str, int way, int n, char c);
 wchar_t				*wstraddnchar(wchar_t *wstr, int way, int n, char c);
 
 char				*addhexachar(char *str);
+char				*applyflag(t_opts *opts, char *str);
 char				*applyprecision(t_opts *opts, char *str);
 char				*applywidth(t_opts *opts, char *str);
 wchar_t				*applywidthwchar(t_opts *opts, wchar_t *wstr);

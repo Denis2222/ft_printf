@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/22 00:28:18 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/24 22:27:40 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*render_opts_numeric_unsigned(t_opts *opts, va_list *pa)
 		s = ft_uitoa_base(n, 10);
 
 	s = applyprecision(opts, s);
+	s = applyflag(opts, s);
 	s = applywidth(opts, s);
 
 	return (s);
@@ -75,6 +76,7 @@ char	*render_opts_numeric_signed(t_opts *opts, va_list *pa)
 
 	s = ft_itoa_base(n, 10);
 
+	s = applyflag(opts, s);
 	s = applyprecision(opts, s);
 	s = applywidth(opts, s);
 

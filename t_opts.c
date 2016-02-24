@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/22 00:28:37 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/24 20:12:53 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,25 +64,18 @@ int	renderopts(t_opts *opts, va_list *pa)
 
 	str = NULL;
 	wstr = NULL;
-	if (opts->type == 'd' || opts->type == 'i' || opts->type == 'D')
+	if (issigned(opts))
 		str = render_opts_numeric_signed(opts, pa);
-
-	if (opts->type == 'o' || opts->type == 'O' ||
-		opts->type == 'x' || opts->type == 'X' ||
-		opts->type == 'u' || opts->type == 'U')
+	if (isunsigned(opts))
 		str = render_opts_numeric_unsigned(opts, pa);
-
-	if (opts->type == 'C' || opts->type == 'S' || ((!ft_strcmp(opts->modify, "l")) && (opts->type == 'c' || opts->type == 's')))
+	if (iswchar(opts))
 		wstr = render_opts_wchar(opts, pa);
-	else if (opts->type == '%' || opts->type == 'c' || opts->type == 's')
+	else if (ischar(opts))
 		str = render_opts_char(opts, pa);
-
-	if (opts->type == 'p')
+	if (isptr(opts))
 		str = render_opts_ptr(opts, pa);
-
 	if (!istype(opts->type))
 		str = render_opts_error(opts, pa);
-	
 	if (str)
 	{
 		ft_putstr(str);
