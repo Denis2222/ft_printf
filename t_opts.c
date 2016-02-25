@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/24 20:12:53 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 18:48:17 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,13 @@ int	renderopts(t_opts *opts, va_list *pa)
 		ft_putstr(str);
 		if (ft_strlen(str) == 0 && opts->type == 'c')
 			return (1);
-		return (ft_strlen(str));
+		else if (ft_strlen(str) == opts->width - 1 && opts->type == 'c')
+		{
+			// Cas psyche du char null qui compte pour un write...
+			return (ft_strlen(str) + 1);
+		}
+		else
+			return (ft_strlen(str));
 	}
 	else if (wstr)
 	{
@@ -92,8 +98,13 @@ int	renderopts(t_opts *opts, va_list *pa)
 	}
 	else
 	{
-		ft_putstr("(null)");
-		return (ft_strlen("(null)"));
+		if (opts->type == 0)
+			return (0);
+		else
+		{
+			ft_putstr("(null)");
+			return (ft_strlen("(null)"));
+		}
 	}
 	return (0);
 }

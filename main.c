@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:02:08 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/24 23:16:03 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:14:33 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,21 @@
 
 int	main(int ac, char **av)
 {
-	int	n;
-	
-	(void)n;
-	(void)ac;
-	(void)av;
-	char *str;
-	long	longmax;
-	unsigned long	ulongmax;
-	wchar_t *wstr;
-	char	*mstr;
-	char	*str2;
-
+	int		n;
+	char	*str;
 	setlocale(LC_ALL,"en_US.UTF-8");
-	longmax = (922337203685477580 * 10);
-	ulongmax = longmax * 2 + 15;
-	if (ac == 2)
-	{
-		mstr = 0;
-	
-		printf("ft_printf:\n");
-		n = ft_printf("%010d", 42);
-		ft_putnbr(n);
-		ft_putendl("\n--------\nprintf:");
-		n =    printf("%010d", 42);
-		printf("%d", n);
-		//if (n == -1)
-		//	perror("");
-	}
-	else if(ac == 4)
-	{
-		ft_printf(av[1], av[2], ft_atoi(av[3]));
-	}
+	setbuf(stdout, NULL);
+	str = ft_strdup("{%05p}");
 
+	ft_putstr("str in:");
+	ft_putendl(str);
+	
+	n = ft_printf(str, 0);
+	ft_putendl("");
+	ft_putnbr(n);
+	ft_putendl("");
+	n = printf(str, 0);
+	ft_putendl("");
+	ft_putnbr(n);
 	return (0);
 }

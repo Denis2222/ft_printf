@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/24 20:09:19 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 18:31:23 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ typedef struct		s_opts
 {
 	char			*str;
 	int				length;
-
 	int				formatstart;
 	int				formatend;
+
 	char			type;
 	char			flag;
 	int				width;

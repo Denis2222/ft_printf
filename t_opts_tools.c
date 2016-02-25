@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/24 23:15:47 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:20:10 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,15 @@ char	*applywidth(t_opts *opts, char *str)
 
 	c = ' ';
 	way = 0;
-	if (opts->flag == '-' || opts->type == 'p')
+	if (opts->type == 'p' && opts->width0)
+		opts->width = opts->width - 2;
+	if (opts->flag == '-')
 		way = 1;
 	if (opts->width0)
 		c = '0';
 	length = ft_strlen(str);
+	if (str[0] == '\0')
+		length = 1;
 	if (opts->width > length)
 	{
 		if (issigned(opts) && opts->width0)
