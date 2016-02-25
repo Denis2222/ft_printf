@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 00:12:37 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/24 20:09:26 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 20:49:51 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int istype(char c)
 
 int	isflag(char c)
 {
-	char	*flags = "-+ #";
+	char	*flags = "-+ #0";
 	if (ft_strchr(flags, c))
 			return (1);
 	return (0);
@@ -102,10 +102,14 @@ void	analyseflags(t_opts *opts)
 {
 	char *str;
 	str = opts->str;
-	while (!isflag(*str) && *str)
+	while (*str && (!ft_isdigit(*str) || *str == '0'))
+	{
+		if (isflag(*str))
+			if (!(opts->flag == '+' && *str == ' ') &&
+				!(opts->flag == '-' && *str == '0'))
+				opts->flag = *str;
 		str++;
-	if (isflag(*str))
-		opts->flag = *str;
+	}
 }
 
 void	analysewidth(t_opts *opts)
@@ -123,7 +127,7 @@ void	analysewidth(t_opts *opts)
 	endwidth = 0;
 	while (str[i] && str[i] != '.')
 	{
-		if (ft_isdigit(str[i]) && startwidth == 0)
+		if (ft_isdigit(str[i]) && startwidth == 0 && str[i] != '0')
 		{
 			startwidth = i;
 			endwidth = i;
@@ -143,8 +147,6 @@ void	analysewidth(t_opts *opts)
 		i++;
 	}
 	width[u] = '\0';
-	if (width[0] == '0')
-		opts->width0 = 1;
 	opts->width = ft_atoi(width);
 	free(width);
 //	ft_putstr("fin analyse opts");

@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 18:48:17 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 20:50:06 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	initopts(t_opts *opts)
 	opts->type = 0;
 	opts->flag = 0;
 	opts->width = 0;
-	opts->width0 = 0;
 	opts->precision = 0;
 	opts->precisionn = 0;
 	opts->modify = 0;
@@ -80,10 +79,14 @@ int	renderopts(t_opts *opts, va_list *pa)
 	{
 		ft_putstr(str);
 		if (ft_strlen(str) == 0 && opts->type == 'c')
+		{
+			ft_putchar(0);
 			return (1);
+		}
 		else if (ft_strlen(str) == opts->width - 1 && opts->type == 'c')
 		{
 			// Cas psyche du char null qui compte pour un write...
+			ft_putchar(0);
 			return (ft_strlen(str) + 1);
 		}
 		else
@@ -93,7 +96,10 @@ int	renderopts(t_opts *opts, va_list *pa)
 	{
 		ft_putwstr(wstr);
 		if (ft_wstrlen(wstr) == 0 && opts->type == 'C')
+		{
+			ft_putwchar(0);
 			return (1);
+		}
 		return (ft_wstrlen(wstr));
 	}
 	else

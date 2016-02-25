@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 19:24:55 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/24 20:15:49 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 20:50:17 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ void	debugprintf(t_printf *pf)
 		ft_putchar(opts->flag);
 		ft_putstr(" width:");
 		ft_putnbr(opts->width);
-		if (opts->width0)
-			ft_putstr(" &0 ");
 		if (opts->precision)
 		{
 			ft_putstr(" precision:");

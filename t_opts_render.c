@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 19:21:39 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 20:49:45 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,14 +148,14 @@ char	*render_opts_ptr(t_opts *opts, va_list *pa)
 
 	ptr = va_arg(*pa, uintmax_t);
 	s = ft_uitoa_base(ptr, 16);
-	if (opts->width0)
+	if (opts->flag == '0')
 	{
 		s = applywidth(opts, s);
-		s = ft_strtolower(addhexachar(s));
+		s = ft_strtolower(addhexachar(s, 0));
 	}
 	else
 	{
-		s = ft_strtolower(addhexachar(s));
+		s = ft_strtolower(addhexachar(s, 0));
 		s = applywidth(opts, s);
 	}
 	return (s);

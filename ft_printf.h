@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 18:31:23 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 20:48:27 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct		s_opts
 	char			type;
 	char			flag;
 	int				width;
-	int				width0;
 	int				precision;
 	int				precisionn;
 	char			*modify;
@@ -97,7 +96,7 @@ char				*render_opts_error(t_opts *opts, va_list *pa);
 char				*straddnchar(char *str, int way, int n, char c);
 wchar_t				*wstraddnchar(wchar_t *wstr, int way, int n, char c);
 
-char				*addhexachar(char *str);
+char				*addhexachar(char *str, int ishexa);
 char				*applyflag(t_opts *opts, char *str);
 char				*applyprecision(t_opts *opts, char *str);
 char				*applywidth(t_opts *opts, char *str);
