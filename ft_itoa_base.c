@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 11:06:49 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/19 17:58:35 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 23:12:02 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_itoa_base_length(uintmax_t value, int base)
 	uintmax_t	nb;
 
 	nb = 1;
-	while (value >= base)
+	while (value >= (uintmax_t)base)
 	{
 		value /= base;
 		nb++;
@@ -69,7 +69,6 @@ char	*ft_itoa_base(intmax_t value, int base)
 char	*ft_uitoa_base(uintmax_t value, int base)
 {
 	char			*str;
-	uintmax_t		nb;
 	int				length;
 	int				i;
 	char			tab[16] = "0123456789ABCDEF";

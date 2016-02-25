@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:42 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/21 20:32:39 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 23:05:01 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ char *ft_strmaxn(char *str, int size)
 {
 	char *out;
 
-	if (ft_strlen(str) > size)
+	if ((int)ft_strlen(str) > size)
 	{
 		out = ft_strnew(size);
 		ft_strncpy(out, str, size);

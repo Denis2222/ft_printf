@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 21:54:32 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 23:05:44 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ char	*applyprecision(t_opts *opts, char *str)
 			sign = 1;
 		else
 			sign = 0;
-		if (opts->precisionn > ft_strlen(str) - sign)
+		if (opts->precisionn > (int)ft_strlen(str) - sign)
 		{
 			new = ft_strnew(opts->precisionn + sign);
 			if (sign)
 				new = ft_strncat(new, str, 1);
 			i = sign;
-			while (i < opts->precisionn - ft_strlen(str) + 2*sign)
+			while (i < opts->precisionn - (int)ft_strlen(str) + 2*sign)
 				new[i++] = '0';
 			new = ft_strcat(new, &str[sign]);
 			return (new);
@@ -139,7 +139,7 @@ char	*applywidth(t_opts *opts, char *str)
 	else if (opts->flags['0'])
 		c = '0';
 	length = ft_strlen(str);
-	if (str[0] == '\0')
+	if (str[0] == '\0' && opts->type == 'c')
 		length = 1;
 	if (opts->width > length)
 	{

@@ -12,7 +12,7 @@ SRCS = t_opts.c \
 
 NAME = libftprintf.a
 GCC_FLAGS = -Wall -Werror -Wextra
-CC = gcc -g # $(GCC_FLAGS)
+CC = gcc $(GCC_FLAGS)
 SRCDIR = ./
 OBJDIR = ./objs
 AR = ar -cq

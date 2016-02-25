@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 00:14:23 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/22 00:16:35 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 23:14:25 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ wchar_t	*ft_wcsdup(wchar_t * src)
 {
 	wchar_t	*wstr;
 
-	wstr = (wchar_t *)malloc(sizeof(wchar_t *) * (ft_wcslen(wstr) + 1));
+	wstr = (wchar_t *)malloc(sizeof(wchar_t *) * (ft_wcslen(src) + 1));
 	if (!wstr)
 		return (NULL);
 	ft_wcscpy(wstr, src);

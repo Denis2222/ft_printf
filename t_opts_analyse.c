@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 00:12:37 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 21:43:42 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 23:15:42 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	analyseflags(t_opts *opts)
 			if (!(opts->flags['+'] && *str == ' ') &&
 				!(opts->flags['-'] && *str == '0'))
 			{
-				opts->flags[*str] = 1;
+				opts->flags[(int)*str] = 1;
 			}
 		}
 		str++;
@@ -172,6 +172,8 @@ void	analyseprecision(t_opts *opts)
 		}
 		else
 			opts->precision = 1;
+		if (issigned(opts) || isunsigned(opts))
+			opts->flags['0'] = 0;
 	}
 }
 
