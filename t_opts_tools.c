@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 20:49:20 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 21:54:32 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ char	*addoctachar(char *str)
 
 char	*applyflag(t_opts *opts, char *str)
 {
-	if (opts->flag == '#' && opts->type == 'x')
+	if (opts->flags['#'] && opts->type == 'x')
 		return (ft_strtolower(addhexachar(str, 1)));
-	if (opts->flag == '#' && opts->type == 'X')
+	if (opts->flags['#'] && opts->type == 'X')
 		return (addhexachar(str, 1));
-	if (opts->flag == '#' && (opts->type == 'o' || opts->type == 'O'))
+	if (opts->flags['#'] && (opts->type == 'o' || opts->type == 'O'))
 		return (addoctachar(str));
-	if (issigned(opts) && opts->flag == '+')
+	if (issigned(opts) && opts->flags['+'])
 		if (str[0] != '-')
 			str = straddnchar(str, 0, 1, '+');
-	if (issigned(opts) && ft_isdigit(str[0]) && opts->flag == ' ')
+	if (issigned(opts) && ft_isdigit(str[0]) && opts->flags[' '])
 		str = straddnchar(str, 0, 1, ' ');
 	return (str);
 
@@ -132,18 +132,18 @@ char	*applywidth(t_opts *opts, char *str)
 
 	c = ' ';
 	way = 0;
-	if (opts->type == 'p' && opts->flag == '0')
+	if (opts->type == 'p' && opts->flags['0'])
 		opts->width = opts->width - 2;
-	if (opts->flag == '-')
+	if (opts->flags['-'])
 		way = 1;
-	else if (opts->flag == '0')
+	else if (opts->flags['0'])
 		c = '0';
 	length = ft_strlen(str);
 	if (str[0] == '\0')
 		length = 1;
 	if (opts->width > length)
 	{
-		if (issigned(opts) && opts->flag == '0')
+		if (issigned(opts) && opts->flags['0'] && !opts->flags['-'])
 		{
 			str = straddncharsigned(str, opts->width - length, c);
 		}
@@ -161,9 +161,9 @@ wchar_t *applywidthwchar(t_opts *opts, wchar_t *wstr)
 
 	c = ' ';
 	way = 0;
-	if (opts->flag == '-')
+	if (opts->flags['-'])
 		way = 1;
-	else if (opts->flag == '0')
+	else if (opts->flags['0'])
 		c = '0';
 	length = ft_wstrlen(wstr);
 	if (opts->width > length)

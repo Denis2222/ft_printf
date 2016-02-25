@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 00:12:37 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 20:49:51 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 21:43:42 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,13 @@ void	analyseflags(t_opts *opts)
 	while (*str && (!ft_isdigit(*str) || *str == '0'))
 	{
 		if (isflag(*str))
-			if (!(opts->flag == '+' && *str == ' ') &&
-				!(opts->flag == '-' && *str == '0'))
-				opts->flag = *str;
+		{
+			if (!(opts->flags['+'] && *str == ' ') &&
+				!(opts->flags['-'] && *str == '0'))
+			{
+				opts->flags[*str] = 1;
+			}
+		}
 		str++;
 	}
 }

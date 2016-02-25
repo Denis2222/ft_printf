@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 20:50:06 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 21:43:07 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	initopts(t_opts *opts)
 	opts->formatstart = 0;
 	opts->formatend = 0;
 	opts->type = 0;
-	opts->flag = 0;
+	opts->flags = ft_memalloc('1');
 	opts->width = 0;
 	opts->precision = 0;
 	opts->precisionn = 0;

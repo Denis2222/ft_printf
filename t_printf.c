@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 19:24:55 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 20:50:17 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 21:44:02 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_printf	*newprintf(char *format)
 void	debugprintf(t_printf *pf)
 {
 	t_opts	*opts;
-
+	int i;
 	ft_putendl("\n\n======Debug printf :");
 	ft_putstr("Chaine:[");
 	ft_putstr(pf->format);
@@ -41,8 +41,19 @@ void	debugprintf(t_printf *pf)
 		ft_putstr(" type:");
 		ft_putchar(opts->type);
 		ft_putstr(" flag:");
-		ft_putchar(opts->flag);
-		ft_putstr(" width:");
+		ft_putstr("[");
+
+		i = 0;
+		while (i < '1')
+		{
+			if (isflag(i))
+				if (opts->flags[i])
+					ft_putchar(i);
+			i++;
+		}
+
+
+ft_putstr("] width:");
 		ft_putnbr(opts->width);
 		if (opts->precision)
 		{

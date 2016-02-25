@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 20:48:27 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/25 21:44:13 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct		s_opts
 	int				formatend;
 
 	char			type;
-	char			flag;
+	char			*flags;
 	int				width;
 	int				precision;
 	int				precisionn;
