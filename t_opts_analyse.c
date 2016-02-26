@@ -140,20 +140,14 @@ void	analysewidth(t_opts *opts)
 			endwidth = i;
 		i++;
 	}
-
 	width = (char*)malloc(sizeof(char) * ((endwidth - startwidth + 1) + 1));
 	i = startwidth;
 	u = 0;
 	while(i <= endwidth)
-	{
-		width[u] = str[i];
-		u++;
-		i++;
-	}
+		width[u++] = str[i++];
 	width[u] = '\0';
 	opts->width = ft_atoi(width);
 	free(width);
-//	ft_putstr("fin analyse opts");
 }
 
 void	analyseprecision(t_opts *opts)

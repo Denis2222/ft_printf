@@ -47,7 +47,6 @@ char	*render_opts_numeric_unsigned(t_opts *opts, va_list *pa)
 
 	if ((opts->type == 'o' || opts->type == 'O') && opts->precision && opts->precisionn)
 	{
-//		printf("toto");
 		s = applyflag(opts, s);
 		s = applyprecision(opts, s);
 		s = applywidth(opts, s);
@@ -90,14 +89,9 @@ char	*render_opts_numeric_signed(t_opts *opts, va_list *pa)
 		n = (int)(va_arg(*pa, intmax_t));
 
 	s = ft_itoa_base(n, 10);
-	//printf("[%s]", s);
 	s = applyprecision(opts, s);
-	//printf("[%s]", s);
 	s = applyflag(opts, s);
-	//printf("[%s]", s);
 	s = applywidth(opts, s);
-	//printf("[%s]", s);
-
 	return (s);
 }
 

@@ -22,7 +22,6 @@ t_printf	*newprintf(char *format)
 	return (pf);
 }
 
-
 void	debugprintf(t_printf *pf)
 {
 	t_opts	*opts;
@@ -31,7 +30,6 @@ void	debugprintf(t_printf *pf)
 	ft_putstr("Chaine:[");
 	ft_putstr(pf->format);
 	ft_putendl("]");
-
 	ft_putendl("opts:");
 	opts = pf->opts;
 	while (opts)
@@ -42,7 +40,6 @@ void	debugprintf(t_printf *pf)
 		ft_putchar(opts->type);
 		ft_putstr(" flag:");
 		ft_putstr("[");
-
 		i = 0;
 		while (i < '1')
 		{
@@ -51,9 +48,7 @@ void	debugprintf(t_printf *pf)
 					ft_putchar(i);
 			i++;
 		}
-
-
-ft_putstr("] width:");
+		ft_putstr("] width:");
 		ft_putnbr(opts->width);
 		if (opts->precision)
 		{

@@ -25,10 +25,7 @@ wchar_t	*wstraddnchar(wchar_t *wstr, int way, int n, char c)
 	{
 		new = ft_wcscpy(new, wstr);
 		while (i < n)
-		{
-			new[length + i] = (wchar_t)c;
-			i++;
-		}
+			new[length + i++] = (wchar_t)c;
 	}
 	else
 	{
@@ -55,18 +52,12 @@ char	*straddnchar(char *str, int way, int n, char c)
 	{
 		new = ft_strcpy(new, str);
 		while (i < n)
-		{
-			new[length + i] = c;
-			i++;
-		}
+			new[length + i++] = c;
 	}
 	else
 	{
 		while (i < n)
-		{
-			new[i] = c;
-			i++;
-		}
+			new[i++] = c;
 		new = ft_strcat(new, str);
 	}
 	return (new);

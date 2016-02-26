@@ -26,14 +26,11 @@ int	ft_printf(char *format, ...)
 	va_start(pa, format);
 	while (*format)
 	{
-		//ft_putstr("@");
 		if (*format == '%')
 		{
-			//ft_putstr("%");
 			new = newopts(format, pos);
 			len += renderopts(new, &pa);
 			pf->opts = addopts(&pf->opts, new);
-			//ft_putnbr(new->length);
 			format += new->length;
 			pos += new->length;
 		}
@@ -49,7 +46,5 @@ int	ft_printf(char *format, ...)
 		}
 	}
 	va_end(pa);
-
-//	debugprintf(pf);
 	return (len);
 }

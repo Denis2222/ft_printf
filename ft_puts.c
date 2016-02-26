@@ -39,9 +39,7 @@ char *ft_strminn(char *str, int size, int align, char c)
 		}
 	}
 	else
-	{
 		out = str;
-	}
 	return (out);
 }
 
