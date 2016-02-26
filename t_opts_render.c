@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/26 04:11:53 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/26 04:39:15 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,13 @@ char	*render_opts_numeric_unsigned(t_opts *opts, va_list *pa)
 			 ((opts->type == 'o' || opts->type == 'O') && opts->flags['#'] && !opts->flags['0'])
 			)
 	{
-		//printf("[%s]", s);
 		s = applyprecision(opts, s);
-		//printf("[%s]", s);
 		s = applyflag(opts, s);
 		s = applywidth(opts, s);
 	}
 	else
 	{
-		//printf("[%s]", s);
 		s = applyprecision(opts, s);
-		//printf("[%s]", s);
 		s = applywidth(opts, s);
 		s = applyflag(opts, s);
 	}
