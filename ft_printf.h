@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 21:44:13 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/26 00:47:45 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ wchar_t				*wstraddnchar(wchar_t *wstr, int way, int n, char c);
 char				*addhexachar(char *str, int ishexa);
 char				*applyflag(t_opts *opts, char *str);
 char				*applyprecision(t_opts *opts, char *str);
+wchar_t				*applyprecisionwchar(t_opts *opts, wchar_t *str);
 char				*applywidth(t_opts *opts, char *str);
 wchar_t				*applywidthwchar(t_opts *opts, wchar_t *wstr);
 

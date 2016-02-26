@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 23:22:06 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/26 02:21:30 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,21 @@ char	*render_opts_numeric_unsigned(t_opts *opts, va_list *pa)
 	else
 		s = ft_uitoa_base(n, 10);
 
-	s = applyprecision(opts, s);
-	s = applywidth(opts, s);
-	s = applyflag(opts, s);
-
+	if ((opts->type == 'o' || opts->type == 'O') && opts->precision && opts->precisionn)
+	{
+//		printf("toto");
+		s = applyflag(opts, s);
+		s = applyprecision(opts, s);
+		s = applywidth(opts, s);
+	}
+	else
+	{
+//		printf("[%s]", s);
+		s = applyprecision(opts, s);
+//		printf("[%s]", s);
+		s = applywidth(opts, s);
+		s = applyflag(opts, s);
+	}
 	return (s);
 }
 
@@ -99,8 +110,10 @@ char	*render_opts_char(t_opts *opts, va_list *pa)
 	else
 	{
 		s = va_arg(*pa, char *);
-		if (!s)
+		if (!s && !opts->precision)
 			return (ft_strdup("(null)"));
+		else if (!s)
+			s = ft_strdup("");
 		s = applyprecision(opts, s);
 		s = applywidth(opts, s);
 	}
@@ -131,10 +144,10 @@ wchar_t	*render_opts_wchar(t_opts *opts, va_list *pa)
 	else
 	{
 		w = va_arg(*pa, wchar_t *);
+		w = applyprecisionwchar(opts, w);
 		if (!w)
 			return (ft_wcsdup(L"(null)"));
 	}
-	w = (wchar_t*)applyprecision(opts, (char*)w);
 	w = applywidthwchar(opts, w);
 	return (w);
 }
@@ -148,11 +161,13 @@ char	*render_opts_ptr(t_opts *opts, va_list *pa)
 	s = ft_uitoa_base(ptr, 16);
 	if (opts->flags['0'])
 	{
+		s = applyprecision(opts, s);
 		s = applywidth(opts, s);
 		s = ft_strtolower(addhexachar(s, 0));
 	}
 	else
 	{
+		s = applyprecision(opts, s);
 		s = ft_strtolower(addhexachar(s, 0));
 		s = applywidth(opts, s);
 	}

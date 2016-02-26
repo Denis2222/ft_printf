@@ -21,7 +21,7 @@ OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 LIBFT = ./libft/libft.a
 
 
-all: $(NAME) test clean
+all: $(NAME)
 
 $(LIBFT):
 	@make -C libft

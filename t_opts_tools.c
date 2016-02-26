@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 23:05:44 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/26 02:33:35 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ char	*addoctachar(char *str)
 
 char	*applyflag(t_opts *opts, char *str)
 {
-	if (opts->flags['#'] && opts->type == 'x')
+	if (opts->flags['#'] && opts->type == 'x' && ft_strlen(str))
 		return (ft_strtolower(addhexachar(str, 1)));
-	if (opts->flags['#'] && opts->type == 'X')
+	if (opts->flags['#'] && opts->type == 'X' && ft_strlen(str))
 		return (addhexachar(str, 1));
 	if (opts->flags['#'] && (opts->type == 'o' || opts->type == 'O'))
 		return (addoctachar(str));
@@ -69,7 +69,8 @@ char	*applyprecision(t_opts *opts, char *str)
 	int		sign;
 	int		i;
 
-	if ((issigned(opts) || isunsigned(opts)) && opts->precisionn > 0 && opts->precision)
+	if ((issigned(opts) || isunsigned(opts) || opts->type == 'p') &&
+		opts->precisionn > 0 && opts->precision)
 	{
 		if (str[0] == '-' || str[0] == '+')
 			sign = 1;
@@ -89,7 +90,8 @@ char	*applyprecision(t_opts *opts, char *str)
 		else
 			return (str);
 	}
-	else if (opts->precision > 0)
+	else if ((opts->precision > 0 && !opts->flags['#']) ||
+			(opts->type != 'o' && opts->type != 'O' && opts->precision > 0 && opts->flags['#']))
 	{
 		new = ft_strnew(opts->precisionn);
 		new = ft_strncpy(new, str, opts->precisionn);
@@ -97,6 +99,30 @@ char	*applyprecision(t_opts *opts, char *str)
 	}
 	else
 		return (str);
+}
+
+wchar_t	*applyprecisionwchar(t_opts *opts, wchar_t *str)
+{
+	wchar_t *new;
+	int		i;
+	int		octets;
+
+	if (opts->precision)
+	{
+		new = (wchar_t*)malloc(sizeof(char) * opts->precisionn + 1);
+		octets = 0;
+		i = 0;
+		while (str[i] && octets + ft_wcharlen(str[i]) <= opts->precisionn)
+		{
+			new[i] = str[i];
+			octets += ft_wcharlen(str[i]);
+			i++;
+		}
+		new[i] = '\0';
+	}
+	else
+		new = str;
+	return (new);
 }
 
 char	*straddncharsigned(char *str, int n, char c)
