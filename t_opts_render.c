@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/26 02:21:30 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/26 04:11:53 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,21 @@ char	*render_opts_numeric_unsigned(t_opts *opts, va_list *pa)
 		s = applyprecision(opts, s);
 		s = applywidth(opts, s);
 	}
+	else if (((opts->type == 'x' || opts->type == 'X') && opts->flags['#'] && !opts->flags['0']) ||
+			 ((opts->type == 'o' || opts->type == 'O') && opts->flags['#'] && !opts->flags['0'])
+			)
+	{
+		//printf("[%s]", s);
+		s = applyprecision(opts, s);
+		//printf("[%s]", s);
+		s = applyflag(opts, s);
+		s = applywidth(opts, s);
+	}
 	else
 	{
-//		printf("[%s]", s);
+		//printf("[%s]", s);
 		s = applyprecision(opts, s);
-//		printf("[%s]", s);
+		//printf("[%s]", s);
 		s = applywidth(opts, s);
 		s = applyflag(opts, s);
 	}
@@ -84,10 +94,13 @@ char	*render_opts_numeric_signed(t_opts *opts, va_list *pa)
 		n = (int)(va_arg(*pa, intmax_t));
 
 	s = ft_itoa_base(n, 10);
-
-	s = applyflag(opts, s);
+	//printf("[%s]", s);
 	s = applyprecision(opts, s);
+	//printf("[%s]", s);
+	s = applyflag(opts, s);
+	//printf("[%s]", s);
 	s = applywidth(opts, s);
+	//printf("[%s]", s);
 
 	return (s);
 }
