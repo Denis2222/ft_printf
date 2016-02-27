@@ -1,6 +1,7 @@
+.PHONY: leaks
+
 SRCS = t_opts.c \
 	   ft_printf.c \
-	   ft_puts.c \
 	   t_opts.c \
 	   t_opts_tools.c \
 	   t_opts_render.c \
@@ -52,8 +53,9 @@ re: fclean all
 test:
 	$(RM) printf
 	$(CC) main.c $(NAME) -o printf
-	./printf "Hello World"
+	./printf
 
 leaks:
-	$(CC) mainleaks.c $(NAME) -o leaks
-	./leaks "Hello World"
+	$(RM) leakstest
+	$(CC) mainleaks.c $(NAME) -o leakstest
+	./leakstest

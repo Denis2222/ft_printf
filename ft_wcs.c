@@ -6,13 +6,13 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 00:14:23 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/26 00:35:28 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 02:16:54 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-wchar_t *ft_wcsnew(int n)
+wchar_t	*ft_wcsnew(int n)
 {
 	wchar_t *wstr;
 
@@ -38,7 +38,7 @@ wchar_t	*ft_wcscpy(wchar_t *dest, wchar_t *src)
 	return (dest);
 }
 
-wchar_t	*ft_wcsdup(wchar_t * src)
+wchar_t	*ft_wcsdup(wchar_t *src)
 {
 	wchar_t	*wstr;
 

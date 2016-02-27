@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 00:12:37 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 00:07:00 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 04:01:46 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,8 @@ void	delimitwidth(char *str, int *start, int *end)
 	*end = 0;
 	while (str[i] && str[i] != '.')
 	{
-		if ((ft_isdigit(str[i]) || str[i] == '*') && *start == 0 && str[i] != '0')
+		if ((ft_isdigit(str[i]) || str[i] == '*') &&
+			*start == 0 && str[i] != '0')
 		{
 			*start = i;
 			*end = i;
@@ -148,6 +149,16 @@ void	delimitwidth(char *str, int *start, int *end)
 		else if (ft_isdigit(str[i]) || str[i] == '*')
 			*end = i;
 		i++;
+	}
+}
+
+void	analysewidthwildcard(t_opts *opts, va_list *pa)
+{
+	opts->width = va_arg(*pa, int);
+	if (opts->width < 0)
+	{
+		opts->flags['-'] = 1;
+		opts->width *= -1;
 	}
 }
 
@@ -167,9 +178,7 @@ void	analysewidth(t_opts *opts, va_list *pa)
 		width[u++] = str[startwidth++];
 	width[u] = '\0';
 	if (ft_strchr(width, '*'))
-	{
-		opts->width = va_arg(*pa, int);
-	}
+		analysewidthwildcard(opts, pa);
 	else
 	{
 		opts->width = ft_atoi(width);
@@ -177,7 +186,18 @@ void	analysewidth(t_opts *opts, va_list *pa)
 	}
 }
 
-void	analyseprecision(t_opts *opts)
+void	analyseprecisionwildcard(t_opts *opts, va_list *pa)
+{
+	opts->precision = 1;
+	opts->precisionn = va_arg(*pa, int);
+	if (opts->precisionn < 0)
+	{
+		opts->precisionn = 0;
+		opts->precision = 0;
+	}
+}
+
+void	analyseprecision(t_opts *opts, va_list *pa)
 {
 	char	*str;
 	int		nb;
@@ -186,14 +206,16 @@ void	analyseprecision(t_opts *opts)
 	str = opts->str;
 	if ((str = ft_strchr(str, '.')))
 	{
-		if ((nb = ft_atoi(++str)))
+		if (ft_strchr(str, '*'))
+			analyseprecisionwildcard(opts, pa);
+		else if ((nb = ft_atoi(++str)))
 		{
 			opts->precision = 1;
 			opts->precisionn = nb;
 		}
 		else
 			opts->precision = 1;
-		if (issigned(opts) || isunsigned(opts))
+		if ((issigned(opts) || isunsigned(opts)) && opts->precision)
 			opts->flags['0'] = 0;
 	}
 }
@@ -202,6 +224,6 @@ void	analyseopts(t_opts *opts, va_list *pa)
 {
 	analyseflags(opts);
 	analysewidth(opts, pa);
-	analyseprecision(opts);
+	analyseprecision(opts, pa);
 	analysemod(opts);
 }

@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 19:24:55 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/26 22:32:17 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 04:21:54 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		printfclean(t_printf *pf)
 	{
 		c = opts;
 		opts = opts->next;
-		if (opts)
+		if (c)
 		{
 			freestr(c->str);
 			freestr(c->flags);

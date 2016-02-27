@@ -3,8 +3,9 @@
 
 int main(void)
 {
-  ft_printf("\n");
+  //ft_printf("\n");
   ft_printf("%%\n");
+  ft_printf("%d\n", 42);
   ft_printf("%d\n", 42);
   ft_printf("%d%d\n", 42, 41);
   ft_printf("%d%d%d\n", 42, 43, 44);
@@ -33,6 +34,6 @@ int main(void)
   ft_printf("%s%s\n", "test", "test");
   ft_printf("%s%s%s\n", "test", "test", "test");
   ft_printf("%C\n", 15000);
-  //while (1);
+  while (1);
   return (0);
 }

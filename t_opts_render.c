@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 01:25:44 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 05:09:02 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ char	*render_opts_char(t_opts *opts, va_list *pa)
 	return (s);
 }
 
-char	*render_opts_error(t_opts *opts, va_list *pa)
+char	*render_opts_error(t_opts *opts, va_list *pa, char *str)
 {
 	char	*s;
 
@@ -151,9 +151,9 @@ wchar_t	*render_opts_wchar(t_opts *opts, va_list *pa)
 		w = va_arg(*pa, wchar_t *);
 		if (w)
 			w = ft_wcsdup(w);
-		w = applyprecisionwchar(opts, w);
 		if (!w)
-			return (ft_wcsdup(L"(null)"));
+			w = ft_wcsdup(L"(null)");
+		w = applyprecisionwchar(opts, w);
 	}
 	w = applywidthwchar(opts, w);
 	return (w);
