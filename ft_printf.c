@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 04:37:40 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 08:31:10 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	ft_printf(char *format, ...)
 
 	len = 0;
 	pos = 0;
-	pf = newprintf(format);
 	va_start(pa, format);
 	while (*format)
 	{
@@ -30,7 +29,7 @@ int	ft_printf(char *format, ...)
 		{
 			new = newopts(format, pos, &pa);
 			len += renderopts(new, &pa);
-			pf->opts = addopts(&pf->opts, new);
+			cleanopts(new);
 			format += new->length;
 			pos += new->length;
 		}
@@ -45,8 +44,6 @@ int	ft_printf(char *format, ...)
 			pos++;
 		}
 	}
-//	debugprintf(pf);
-	printfclean(pf);
 	va_end(pa);
 	return (len);
 }

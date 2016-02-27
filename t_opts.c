@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 08:04:28 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 08:29:15 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ t_opts	*newopts(char *format, int pos, va_list *pa)
 	analyseopts(opts, pa);
 	opts->next = NULL;
 	return (opts);
+}
+
+void	cleanopts(t_opts *opts)
+{
+	free(opts->str);
+	free(opts->flags);
+	free(opts->modify);
+	free(opts);
 }
 
 int		renderoptsstr(t_opts *opts, char *str)
