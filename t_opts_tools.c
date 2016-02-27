@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 05:23:22 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 05:37:51 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ wchar_t	*applyprecisionwchar(t_opts *opts, wchar_t *str)
 
 	if (opts->precision)
 	{
-		new = (wchar_t*)malloc(sizeof(char) * opts->precisionn + 1);
+		new = (wchar_t*)malloc(sizeof(wchar_t *) * opts->precisionn + 1);
 		octets = 0;
 		i = 0;
 		while (str[i] && octets + ft_wcharlen(str[i]) <= opts->precisionn)

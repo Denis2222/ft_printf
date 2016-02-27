@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:02:08 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 03:21:22 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 05:36:53 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,13 @@ int	main(int ac, char **av)
 //	teststr("%s", "toto");
 //	teststr("%10.2s", "toto");
 //	teststr("%-10.2s fait du velo", "toto");
+	testwstr("%4.15S", L"我是一oijqiowjdoijqwoijdoijqwoijdoijqwoijdoiqwjiojdioqwjiodjioqwjoidjioqwjdoi只猫。");
 	testwstr("%4.15S", L"我是一只猫。");
+	testwstr("%4.S", L"我是一只猫。");
 
-	ft_printf("{%05.*d}", -15, 42);
-	ft_putendl("");
-	   printf("{%05.*d}", -15, 42);
+//	ft_printf("{%05.*d}", -15, 42);
+//	ft_putendl("");
+//	   printf("{%05.*d}", -15, 42);
 //	printf("[%s]", 20, "toto");
 
 //	ft_putstr(ft_itoa_base(INTMAX_MIN, 10));
