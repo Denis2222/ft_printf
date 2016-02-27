@@ -28,11 +28,10 @@ RM = rm -rf
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 LIBFT = ./libft/libft.a
 
-
 all: clean $(NAME)
 
 $(LIBFT):
-	#@make -C libft
+	@make -C libft
 	@echo $(SRC_LIB_O)
 
 $(NAME): $(OBJS) $(LIBFT)

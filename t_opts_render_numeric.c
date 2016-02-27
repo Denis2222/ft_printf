@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 09:46:42 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 11:19:57 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 11:36:14 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ char		*render_opts_numeric_uitoa(t_opts *opts, uintmax_t n)
 		s = ft_uitoa_base(n, 16);
 	else if (opts->type == 'u')
 		s = ft_uitoa_base(n, 10);
+	else if (opts->type == 'b')
+		s = ft_uitoa_base(n, 2);
 	else
 		s = ft_uitoa_base(n, 10);
 	return (s);

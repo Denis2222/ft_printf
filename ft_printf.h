@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 11:05:33 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 13:25:14 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 # include <stdlib.h>
 # include <wchar.h>
 # include "libft/libft.h"
+
+# define KNRM  "\x1B[0m"
+# define KRED  "\x1B[31m"
+# define KGRN  "\x1B[32m"
+# define KYEL  "\x1B[33m"
+# define KBLU  "\x1B[34m"
+# define KMAG  "\x1B[35m"
+# define KCYN  "\x1B[36m"
+# define KWHT  "\x1B[37m"
 
 int					ft_printf(char *format, ...);
 
@@ -38,10 +47,10 @@ typedef struct		s_opts
 	struct s_opts	*next;
 }					t_opts;
 
-t_opts				*newopts(char *format, int pos, va_list *pa);
+t_opts				*newopts(char *format, int *pos, va_list *pa);
 t_opts				*addopts(t_opts **lst, t_opts *new);
 int					renderopts(t_opts *opts, va_list *pa);
-void				initopts(t_opts *opts, char *startopts);
+void				initopts(t_opts *opts, char *startopts, int *pos);
 int					optsflag(t_opts *opts, char *str);
 void				cleanopts(t_opts *opts);
 

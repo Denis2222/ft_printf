@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 11:30:09 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 13:33:18 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,42 @@ void	incremente(char **format, int *pos)
 	}
 }
 
+void	writecolor(char *str)
+{
+	if (!ft_strcmp("{red}", str))
+		ft_putstr(KRED);
+	else if (!ft_strcmp("{green}", str))
+		ft_putstr(KGRN);
+	else if (!ft_strcmp("{yellow}", str))
+		ft_putstr(KYEL);
+	else if (!ft_strcmp("{blue}", str))
+		ft_putstr(KBLU);
+	else if (!ft_strcmp("{magenta}", str))
+		ft_putstr(KMAG);
+	else if (!ft_strcmp("{cyan}", str))
+		ft_putstr(KCYN);
+	else if (!ft_strcmp("{eoc}", str))
+		ft_putstr(KNRM);
+}
+
+void	lookcolor(char **format)
+{
+	const char	color[8][9] = {"{red}", "{green}", "{yellow}",
+				"{blue}", "magenta", "{cyan}", "{eoc}"};
+	int			i;
+
+	i = 0;
+	while (i < 7)
+	{
+		if (!ft_strncmp(*format, color[i], ft_strlen(color[i])))
+		{
+			writecolor((char *)color[i]);
+			*format += ft_strlen(color[i]);
+		}
+		i++;
+	}
+}
+
 int		ft_printf(char *format, ...)
 {
 	va_list		pa;
@@ -39,13 +75,14 @@ int		ft_printf(char *format, ...)
 	va_start(pa, format);
 	while (*format)
 	{
+		if (*format == '{')
+			lookcolor(&format);
 		if (*format == '%')
 		{
-			new = newopts(format, pos, &pa);
+			new = newopts(format, &pos, &pa);
 			len += renderopts(new, &pa);
 			cleanopts(new);
 			format += new->length;
-			pos += new->length;
 		}
 		else
 			writecount(*format, &len);

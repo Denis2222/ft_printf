@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 09:30:42 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 11:06:20 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 11:37:48 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int		isunsigned(t_opts *opts)
 {
 	if (opts->type == 'o' || opts->type == 'O' ||
 		opts->type == 'x' || opts->type == 'X' ||
-		opts->type == 'u' || opts->type == 'U')
+		opts->type == 'u' || opts->type == 'U' ||
+		opts->type == 'b')
 		return (1);
 	return (0);
 }

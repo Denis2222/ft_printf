@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 09:42:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 09:43:43 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 13:28:24 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ void	analysewidth(t_opts *opts, va_list *pa)
 		width[u++] = str[startwidth++];
 	width[u] = '\0';
 	if (ft_strchr(width, '*'))
+	{
+		freestr(width);
 		analysewidthwildcard(opts, pa);
+	}
 	else
 	{
 		opts->width = ft_atoi(width);

@@ -6,13 +6,13 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 09:56:04 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 12:08:45 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	initopts(t_opts *opts, char *startopts)
+void	initopts(t_opts *opts, char *startopts, int *pos)
 {
 	opts->formatstart = 0;
 	opts->formatend = 0;
@@ -24,9 +24,12 @@ void	initopts(t_opts *opts, char *startopts)
 	opts->modify = 0;
 	opts->str = ft_strnew(opts->length + 1);
 	opts->str = ft_strncpy(opts->str, startopts, opts->length + 1);
+	opts->formatstart = *pos;
+	opts->formatend = *pos + opts->length;
+	opts->type = opts->str[opts->length];
 }
 
-t_opts	*newopts(char *format, int pos, va_list *pa)
+t_opts	*newopts(char *format, int *pos, va_list *pa)
 {
 	t_opts	*opts;
 	char	*startopts;
@@ -46,12 +49,10 @@ t_opts	*newopts(char *format, int pos, va_list *pa)
 		else
 			break ;
 	}
-	initopts(opts, startopts);
-	opts->formatstart = pos;
-	opts->formatend = pos + opts->length;
-	opts->type = opts->str[opts->length];
+	initopts(opts, startopts, pos);
 	analyseopts(opts, pa);
 	opts->next = NULL;
+	*pos += opts->length;
 	return (opts);
 }
 

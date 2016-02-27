@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 09:29:11 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 09:33:04 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 11:36:16 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		istype(char c)
 {
-	const char	types[14] = {"diDuUcCsSoOxXp"};
+	const char	types[15] = {"diDuUcCsSoOxXpb"};
 
 	if (ft_strchr(types, c))
 		return (1);
