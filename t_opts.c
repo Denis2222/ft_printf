@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 05:27:01 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 08:04:28 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int		renderopts(t_opts *opts, va_list *pa)
 		str = render_opts_char(opts, pa);
 	if (isptr(opts))
 		str = render_opts_ptr(opts, pa);
-	if (!istype(opts->type))
+	if (!istype(opts->type) && opts->type != '%')
 		str = render_opts_error(opts, pa, str);
 	if (str)
 		return (renderoptsstr(opts, str));

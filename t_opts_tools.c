@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 05:37:51 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 06:10:39 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ char	*applyprecision(t_opts *opts, char *str)
 	else if ((issigned(opts) || isunsigned(opts)))
 	{
 		if (str[0] == '0' && !str[1] && opts->precision)
-			++str;
+		{
+			freestr(str);
+			return (ft_strdup(""));
+		}
 		return (str);
 	}
 	else if ((opts->precision > 0 && !opts->flags['#']) ||
