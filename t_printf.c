@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 19:24:55 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 04:21:54 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 09:14:09 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,52 +42,4 @@ void		printfclean(t_printf *pf)
 	}
 	free(pf->format);
 	free(pf);
-}
-
-void	debugprintf(t_printf *pf)
-{
-	t_opts	*opts;
-	int i;
-	ft_putendl("\n\n======Debug printf :");
-	ft_putstr("Chaine:[");
-	ft_putstr(pf->format);
-	ft_putendl("]");
-	ft_putendl("opts:");
-	opts = pf->opts;
-	while (opts)
-	{
-		ft_putstr("[ opts->str:");
-		ft_putstr(opts->str);
-		ft_putstr(" type:");
-		ft_putchar(opts->type);
-		ft_putstr(" flag:");
-		ft_putstr("[");
-		i = 0;
-		while (i < '1')
-		{
-			if (isflag(i))
-				if (opts->flags[i])
-					ft_putchar(i);
-			i++;
-		}
-		ft_putstr("] width:");
-		ft_putnbr(opts->width);
-		if (opts->precision)
-		{
-			ft_putstr(" precision:");
-			ft_putnbr(opts->precisionn);
-		}
-		if (opts->modify)
-		{
-			ft_putstr(" mod:");
-			ft_putstr(opts->modify);
-		}
-		ft_putstr(" pos:");
-		ft_putnbr(opts->formatstart);
-		ft_putstr(" ");
-		ft_putnbr(opts->formatend);
-		ft_putendl("]");
-		opts = opts->next;
-	}
-	ft_putendl("\n\n==========================================");
 }

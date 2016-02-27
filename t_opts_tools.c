@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 06:10:39 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 09:15:29 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*applyflag(t_opts *opts, char *str)
 	if (issigned(opts) && ft_isdigit(str[0]) && opts->flags[' '])
 		str = straddnchar(str, 0, 1, ' ');
 	return (str);
-
 }
 
 char	*applyprecision(t_opts *opts, char *str)
@@ -48,7 +47,7 @@ char	*applyprecision(t_opts *opts, char *str)
 			if (sign)
 				new = ft_strncat(new, str, 1);
 			i = sign;
-			while (i < opts->precisionn - (int)ft_strlen(str) + 2*sign)
+			while (i < opts->precisionn - (int)ft_strlen(str) + 2 * sign)
 				new[i++] = '0';
 			new = ft_strcat(new, &str[sign]);
 			freestr(str);
@@ -139,7 +138,7 @@ char	*applywidth(t_opts *opts, char *str)
 	return (str);
 }
 
-wchar_t *applywidthwchar(t_opts *opts, wchar_t *wstr)
+wchar_t	*applywidthwchar(t_opts *opts, wchar_t *wstr)
 {
 	int		length;
 	int		way;
