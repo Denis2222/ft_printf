@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 00:17:03 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 05:40:29 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 05:43:19 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,6 @@ wchar_t	*wstraddnchar(wchar_t *wstr, int way, int n, char c)
 		}
 		new = ft_wcscat(new, wstr);
 	}
+	freewstr(wstr);
 	return (new);
 }
