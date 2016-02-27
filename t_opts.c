@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 08:29:15 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 09:56:04 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,54 +63,6 @@ void	cleanopts(t_opts *opts)
 	free(opts);
 }
 
-int		renderoptsstr(t_opts *opts, char *str)
-{
-	int	len;
-
-	len = ft_strlen(str);
-	ft_putstr(str);
-	freestr(str);
-	str = NULL;
-	if (len == 0 && opts->type == 'c')
-	{
-		ft_putchar(0);
-		return (1);
-	}
-	else if (len == opts->width - 1 && opts->type == 'c')
-	{
-		ft_putchar(0);
-		return (len + 1);
-	}
-	else
-		return (len);
-}
-
-int		renderoptswstr(t_opts *opts, wchar_t *wstr)
-{
-	int	len;
-
-	len = ft_wstrlen(wstr);
-	ft_putwstr(wstr);
-	freewstr(wstr);
-	if (len == 0 && opts->type == 'C')
-	{
-		ft_putwchar(0);
-		return (1);
-	}
-	return (len);
-}
-
-int		renderoptsnull(t_opts *opts)
-{
-	if (opts->type == 0)
-		return (0);
-	else
-	{
-		ft_putstr("(null)");
-		return (ft_strlen("(null)"));
-	}
-}
-
 int		renderopts(t_opts *opts, va_list *pa)
 {
 	char	*str;
@@ -131,11 +83,11 @@ int		renderopts(t_opts *opts, va_list *pa)
 	if (!istype(opts->type) && opts->type != '%')
 		str = render_opts_error(opts, pa, str);
 	if (str)
-		return (renderoptsstr(opts, str));
+		return (putoptsstr(opts, str));
 	else if (wstr)
-		return (renderoptswstr(opts, wstr));
+		return (putoptswstr(opts, wstr));
 	else
-		return (renderoptsnull(opts));
+		return (putoptsnull(opts));
 	return (0);
 }
 

@@ -6,16 +6,30 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 08:31:10 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 11:30:09 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(char *format, ...)
+void	writecount(char c, int *len)
+{
+	(*len)++;
+	ft_putchar(c);
+}
+
+void	incremente(char **format, int *pos)
+{
+	if (**format)
+	{
+		(*format)++;
+		(*pos)++;
+	}
+}
+
+int		ft_printf(char *format, ...)
 {
 	va_list		pa;
-	t_printf	*pf;
 	t_opts		*new;
 	int			pos;
 	int			len;
@@ -34,15 +48,8 @@ int	ft_printf(char *format, ...)
 			pos += new->length;
 		}
 		else
-		{
-			len++;
-			ft_putchar(*format);
-		}
-		if (*format)
-		{
-			format++;
-			pos++;
-		}
+			writecount(*format, &len);
+		incremente(&format, &pos);
 	}
 	va_end(pa);
 	return (len);

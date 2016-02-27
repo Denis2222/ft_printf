@@ -1,22 +1,26 @@
 .PHONY: leaks
 
-SRCS = t_opts.c \
-	   ft_printf.c \
-	   t_opts.c \
-	   t_opts_tools.c \
-	   t_opts_render.c \
+SRCS = addchar.c \
 	   ft_itoa_base.c \
-	   tools.c \
-	   addchar.c \
+	   ft_printf.c \
+	   ft_putw.c \
 	   ft_wcs.c \
-	   t_opts_analyse.c \
 	   is.c \
 	   is2.c \
-	   t_printf.c
+	   t_opts.c \
+	   t_opts_analyse.c \
+	   t_opts_analyse_width.c \
+	   t_opts_put.c \
+	   t_opts_render.c \
+	   t_opts_render_numeric.c \
+	   t_opts_tools.c \
+	   t_opts_tools_prec.c \
+	   t_printf.c \
+	   tools.c
 
 NAME = libftprintf.a
 GCC_FLAGS = -Wall -Werror -Wextra
-CC = gcc #$(GCC_FLAGS)
+CC = gcc $(GCC_FLAGS)
 SRCDIR = ./
 OBJDIR = ./objs
 AR = ar -cq

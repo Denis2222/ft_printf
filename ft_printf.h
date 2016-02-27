@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 08:31:08 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 11:05:33 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int					ismod(char c);
 
 int					isocta(t_opts *opts);
 int					ishexa(t_opts *opts);
+int					isptrand0orishexaandsharpand0(t_opts *opts);
 
 void				analyseflags(t_opts *opts);
 void				analysewidth(t_opts *opts, va_list *pa);
@@ -114,5 +115,9 @@ wchar_t				*applywidthwchar(t_opts *opts, wchar_t *wstr);
 void				freestr(char *str);
 void				freewstr(wchar_t *wstr);
 void				printfclean(t_printf *pf);
+
+int					putoptsstr(t_opts *opts, char *str);
+int					putoptswstr(t_opts *opts, wchar_t *wstr);
+int					putoptsnull(t_opts *opts);
 
 #endif
