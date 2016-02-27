@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 00:17:03 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 05:24:51 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 05:40:29 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*straddnchar(char *str, int way, int n, char c)
 			new[i++] = c;
 		new = ft_strcat(new, str);
 	}
+	freestr(str);
 	return (new);
 }
 
