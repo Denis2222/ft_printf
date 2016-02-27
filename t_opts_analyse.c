@@ -6,20 +6,20 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 00:12:37 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 23:15:42 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 00:07:00 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	issigned(t_opts *opts)
+int		issigned(t_opts *opts)
 {
 	if (opts->type == 'd' || opts->type == 'i' || opts->type == 'D')
 		return (1);
 	return (0);
 }
 
-int	isunsigned(t_opts *opts)
+int		isunsigned(t_opts *opts)
 {
 	if (opts->type == 'o' || opts->type == 'O' ||
 		opts->type == 'x' || opts->type == 'X' ||
@@ -28,61 +28,75 @@ int	isunsigned(t_opts *opts)
 	return (0);
 }
 
-int	iswchar(t_opts *opts)
+int		iswchar(t_opts *opts)
 {
 	if (opts->type == 'C' ||
 		opts->type == 'S' ||
-		(
-		 (!ft_strcmp(opts->modify, "l")) &&
-		 (opts->type == 'c' || opts->type == 's')
-		 )
-		)
+		((!ft_strcmp(opts->modify, "l")) &&
+		(opts->type == 'c' || opts->type == 's')))
 		return (1);
 	return (0);
 }
 
-int	ischar(t_opts *opts)
+int		ischar(t_opts *opts)
 {
 	if (opts->type == '%' || opts->type == 'c' || opts->type == 's')
 		return (1);
 	return (0);
 }
 
-int	isptr(t_opts *opts)
+int		isptr(t_opts *opts)
 {
 	if (opts->type == 'p')
 		return (1);
 	return (0);
 }
 
-int istype(char c)
+int		istype(char c)
 {
-	char	*types = "diDuUcCsSoOxXp";
+	const char	types[14] = {"diDuUcCsSoOxXp"};
+
 	if (ft_strchr(types, c))
 		return (1);
 	return (0);
 }
 
-int	isflag(char c)
+int		isflag(char c)
 {
-	char	*flags = "-+ #0";
+	const char	*flags = "-+ #0";
+
 	if (ft_strchr(flags, c))
-			return (1);
+		return (1);
 	return (0);
 }
 
-int	ismod(char c)
+int		ismod(char c)
 {
-	char	*mod = "hljz";
+	const char	*mod = "hljz";
+
 	if (ft_strchr(mod, c))
+		return (1);
+	return (0);
+}
+
+int		isocta(t_opts *opts)
+{
+	if (opts->type == 'o' || opts->type == 'O')
+		return (1);
+	return (0);
+}
+
+int		ishexa(t_opts *opts)
+{
+	if (opts->type == 'x' || opts->type == 'X')
 		return (1);
 	return (0);
 }
 
 void	analysemod(t_opts *opts)
 {
-	char	flags[6][4] = {"hh", "h", "ll", "l", "j", "z"};
-	int		i;
+	const char	flags[6][4] = {"hh", "h", "ll", "l", "j", "z"};
+	int			i;
 
 	i = 0;
 	(void)opts;
@@ -90,7 +104,7 @@ void	analysemod(t_opts *opts)
 	{
 		if (ft_strstr(opts->str, flags[i]))
 		{
-			opts->modify = ft_strdup(flags[i]);
+			opts->modify = ft_strdup((char *)flags[i]);
 			return ;
 		}
 		i++;
@@ -101,6 +115,7 @@ void	analysemod(t_opts *opts)
 void	analyseflags(t_opts *opts)
 {
 	char *str;
+
 	str = opts->str;
 	while (*str && (!ft_isdigit(*str) || *str == '0'))
 	{
@@ -116,38 +131,50 @@ void	analyseflags(t_opts *opts)
 	}
 }
 
-void	analysewidth(t_opts *opts)
+void	delimitwidth(char *str, int *start, int *end)
+{
+	int	i;
+
+	i = 0;
+	*start = 0;
+	*end = 0;
+	while (str[i] && str[i] != '.')
+	{
+		if ((ft_isdigit(str[i]) || str[i] == '*') && *start == 0 && str[i] != '0')
+		{
+			*start = i;
+			*end = i;
+		}
+		else if (ft_isdigit(str[i]) || str[i] == '*')
+			*end = i;
+		i++;
+	}
+}
+
+void	analysewidth(t_opts *opts, va_list *pa)
 {
 	char	*str;
 	int		startwidth;
 	int		endwidth;
-	int		i;
 	char	*width;
 	int		u;
 
 	str = opts->str;
-	i = 0;
-	startwidth = 0;
-	endwidth = 0;
-	while (str[i] && str[i] != '.')
-	{
-		if (ft_isdigit(str[i]) && startwidth == 0 && str[i] != '0')
-		{
-			startwidth = i;
-			endwidth = i;
-		}
-		else if(ft_isdigit(str[i]))
-			endwidth = i;
-		i++;
-	}
+	delimitwidth(str, &startwidth, &endwidth);
 	width = (char*)malloc(sizeof(char) * ((endwidth - startwidth + 1) + 1));
-	i = startwidth;
 	u = 0;
-	while(i <= endwidth)
-		width[u++] = str[i++];
+	while (startwidth <= endwidth)
+		width[u++] = str[startwidth++];
 	width[u] = '\0';
-	opts->width = ft_atoi(width);
-	free(width);
+	if (ft_strchr(width, '*'))
+	{
+		opts->width = va_arg(*pa, int);
+	}
+	else
+	{
+		opts->width = ft_atoi(width);
+		freestr(width);
+	}
 }
 
 void	analyseprecision(t_opts *opts)
@@ -171,10 +198,10 @@ void	analyseprecision(t_opts *opts)
 	}
 }
 
-void	analyseopts(t_opts *opts)
+void	analyseopts(t_opts *opts, va_list *pa)
 {
 	analyseflags(opts);
-	analysewidth(opts);
+	analysewidth(opts, pa);
 	analyseprecision(opts);
 	analysemod(opts);
 }

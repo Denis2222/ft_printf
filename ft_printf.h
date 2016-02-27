@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/26 00:47:45 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 01:24:28 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <wchar.h>
 # include "libft/libft.h"
 
 int					ft_printf(char *format, ...);
@@ -37,10 +38,10 @@ typedef struct		s_opts
 	struct s_opts	*next;
 }					t_opts;
 
-t_opts				*newopts(char *format, int pos);
+t_opts				*newopts(char *format, int pos, va_list *pa);
 t_opts				*addopts(t_opts **lst, t_opts *new);
 int					renderopts(t_opts *opts, va_list *pa);
-void				initopts(t_opts *opts);
+void				initopts(t_opts *opts, char *startopts);
 int					optsflag(t_opts *opts, char *str);
 
 typedef struct		s_ftprintf
@@ -81,11 +82,15 @@ int					isptr(t_opts *opts);
 int					istype(char c);
 int					isflag(char c);
 int					ismod(char c);
+
+int					isocta(t_opts *opts);
+int					ishexa(t_opts *opts);
+
 void				analyseflags(t_opts *opts);
-void				analysewidth(t_opts *opts);
+void				analysewidth(t_opts *opts, va_list *pa);
 void				analyseprecision(t_opts *opts);
 void				analysemod(t_opts *opts);
-void				analyseopts(t_opts *opts);
+void				analyseopts(t_opts *opts, va_list *pa);
 char				*render_opts_ptr(t_opts *opts, va_list *pa);
 char				*render_opts_char(t_opts *opts, va_list *pa);
 wchar_t				*render_opts_wchar(t_opts *opts, va_list *pa);
@@ -102,5 +107,9 @@ char				*applyprecision(t_opts *opts, char *str);
 wchar_t				*applyprecisionwchar(t_opts *opts, wchar_t *str);
 char				*applywidth(t_opts *opts, char *str);
 wchar_t				*applywidthwchar(t_opts *opts, wchar_t *wstr);
+
+void				freestr(char *str);
+void				freewstr(wchar_t *wstr);
+void				printfclean(t_printf *pf);
 
 #endif

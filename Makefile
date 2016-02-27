@@ -5,6 +5,7 @@ SRCS = t_opts.c \
 	   t_opts_tools.c \
 	   t_opts_render.c \
 	   ft_itoa_base.c \
+	   tools.c \
 	   addchar.c \
 	   ft_wcs.c \
 	   t_opts_analyse.c \
@@ -12,7 +13,7 @@ SRCS = t_opts.c \
 
 NAME = libftprintf.a
 GCC_FLAGS = -Wall -Werror -Wextra
-CC = gcc $(GCC_FLAGS)
+CC = gcc #$(GCC_FLAGS)
 SRCDIR = ./
 OBJDIR = ./objs
 AR = ar -cq
@@ -21,10 +22,10 @@ OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 LIBFT = ./libft/libft.a
 
 
-all: $(NAME) test clean
+all: clean $(NAME) test
 
 $(LIBFT):
-	@make -C libft
+	#@make -C libft
 	@echo $(SRC_LIB_O)
 
 $(NAME): $(OBJS) $(LIBFT)
@@ -42,13 +43,17 @@ clean:
 	@$(RM) $(OBJDIR)
 
 fclean: clean
-	@make -C libft fclean
+	#@make -C libft fclean
 	@$(RM) printf
 	@$(RM) ./printf.dSYM
 
 re: fclean all
 
 test:
-	@$(RM) printf
-	@$(CC) main.c $(NAME) -o printf
+	$(RM) printf
+	$(CC) main.c $(NAME) -o printf
 	./printf "Hello World"
+
+leaks:
+	$(CC) mainleaks.c $(NAME) -o leaks
+	./leaks "Hello World"

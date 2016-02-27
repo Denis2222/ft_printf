@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/26 04:23:20 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/26 22:23:38 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	*addhexachar(char *str, int ishexa)
 		new = ft_strnew(length + 2);
 		new = ft_strcat(new, "0X");
 		new = ft_strcat(new, str);
+		freestr(str);
 	}
 	else
 		new = str;
@@ -40,6 +41,7 @@ char	*addoctachar(char *str)
 		new = ft_strnew(length + 1);
 		new = ft_strcat(new, "0");
 		new = ft_strcat(new, str);
+		freestr(str);
 	}
 	else
 		new = str;
@@ -85,6 +87,7 @@ char	*applyprecision(t_opts *opts, char *str)
 			while (i < opts->precisionn - (int)ft_strlen(str) + 2*sign)
 				new[i++] = '0';
 			new = ft_strcat(new, &str[sign]);
+			freestr(str);
 			return (new);
 		}
 		else
@@ -101,6 +104,7 @@ char	*applyprecision(t_opts *opts, char *str)
 	{
 		new = ft_strnew(opts->precisionn);
 		new = ft_strncpy(new, str, opts->precisionn);
+		freestr(str);
 		return (new);
 	}
 	else
@@ -125,6 +129,7 @@ wchar_t	*applyprecisionwchar(t_opts *opts, wchar_t *str)
 			i++;
 		}
 		new[i] = '\0';
+		freewstr(str);
 	}
 	else
 		new = str;
@@ -153,6 +158,7 @@ char	*straddncharsigned(char *str, int n, char c)
 		i++;
 	}
 	new = ft_strcat(new, &str[sign]);
+	freestr(str);
 	return (new);
 }
 
@@ -165,11 +171,11 @@ char	*applywidth(t_opts *opts, char *str)
 	c = ' ';
 	way = 0;
 	if ((opts->type == 'p' && opts->flags['0']) ||
-		((opts->type == 'x' || opts->type == 'X') && opts->flags['#'] && opts->flags['0']))
+		(ishexa(opts) && opts->flags['#'] && opts->flags['0']))
 	{
 		opts->width = opts->width - 2;
 	}
-	if ((opts->type == 'o' || opts->type == 'O') && opts->flags['#'] && opts->flags['0'])
+	if (isocta(opts) && opts->flags['#'] && opts->flags['0'])
 	{
 		opts->width = opts->width - 1;
 	}

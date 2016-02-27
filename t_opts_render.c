@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/26 04:39:15 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 01:25:44 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@ char	*render_opts_numeric_unsigned(t_opts *opts, va_list *pa)
 	else
 		s = ft_uitoa_base(n, 10);
 
-	if ((opts->type == 'o' || opts->type == 'O') && opts->precision && opts->precisionn)
+	if (isocta(opts) && opts->precision && opts->precisionn)
 	{
 		s = applyflag(opts, s);
 		s = applyprecision(opts, s);
 		s = applywidth(opts, s);
 	}
-	else if (((opts->type == 'x' || opts->type == 'X') && opts->flags['#'] && !opts->flags['0']) ||
-			 ((opts->type == 'o' || opts->type == 'O') && opts->flags['#'] && !opts->flags['0'])
-			)
+	else if ((ishexa(opts) && opts->flags['#'] && !opts->flags['0']) ||
+			 (isocta(opts) && opts->flags['#'] && !opts->flags['0'])
+	)
 	{
 		s = applyprecision(opts, s);
 		s = applyflag(opts, s);
@@ -100,6 +100,7 @@ char	*render_opts_char(t_opts *opts, va_list *pa)
 	char	*s;
 	char	c;
 
+	s = NULL;
 	if (opts->type == '%')
 		s = ft_strdup("%");
 	else if (opts->type == 'c')
@@ -117,6 +118,7 @@ char	*render_opts_char(t_opts *opts, va_list *pa)
 			return (ft_strdup("(null)"));
 		else if (!s)
 			s = ft_strdup("");
+		s = ft_strdup(s);
 		s = applyprecision(opts, s);
 		s = applywidth(opts, s);
 	}
@@ -147,6 +149,8 @@ wchar_t	*render_opts_wchar(t_opts *opts, va_list *pa)
 	else
 	{
 		w = va_arg(*pa, wchar_t *);
+		if (w)
+			w = ft_wcsdup(w);
 		w = applyprecisionwchar(opts, w);
 		if (!w)
 			return (ft_wcsdup(L"(null)"));

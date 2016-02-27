@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 19:24:55 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 21:44:02 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/26 22:32:17 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,28 @@ t_printf	*newprintf(char *format)
 	pf->format = ft_strdup(format);
 	pf->opts = NULL;
 	return (pf);
+}
+
+void		printfclean(t_printf *pf)
+{
+	t_opts *opts;
+	t_opts *c;
+
+	opts = pf->opts;
+	while (opts)
+	{
+		c = opts;
+		opts = opts->next;
+		if (opts)
+		{
+			freestr(c->str);
+			freestr(c->flags);
+			freestr(c->modify);
+			free(c);
+		}
+	}
+	free(pf->format);
+	free(pf);
 }
 
 void	debugprintf(t_printf *pf)

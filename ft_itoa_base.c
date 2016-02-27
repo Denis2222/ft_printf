@@ -6,13 +6,13 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 11:06:49 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/25 23:12:02 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/26 20:15:53 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_itoa_base_length(uintmax_t value, int base)
+static int		ft_itoa_base_length(uintmax_t value, int base)
 {
 	uintmax_t	nb;
 
@@ -25,7 +25,7 @@ int		ft_itoa_base_length(uintmax_t value, int base)
 	return (nb);
 }
 
-char	ft_itoa_hexa(int nb)
+static char		ft_itoa_hexa(int nb)
 {
 	if (nb >= 0 && nb <= 9)
 		return ('0' + nb);
@@ -33,7 +33,27 @@ char	ft_itoa_hexa(int nb)
 		return ('A' + nb - 10);
 }
 
-char	*ft_itoa_base(intmax_t value, int base)
+static intmax_t	ft_itoa_prep(intmax_t value, int base, int *sign)
+{
+	intmax_t	nb;
+
+	nb = 0;
+	if (base == 10 && value < 0)
+	{
+		*sign = 1;
+		nb = value * -1;
+	}
+	else
+	{
+		if (value < 0)
+			nb = (unsigned int)(value * -1);
+		else
+			nb = value;
+	}
+	return (nb);
+}
+
+char			*ft_itoa_base(intmax_t value, int base)
 {
 	int				sign;
 	char			*str;
@@ -44,20 +64,9 @@ char	*ft_itoa_base(intmax_t value, int base)
 	if (base > 16 || base < 2)
 		return (NULL);
 	sign = 0;
-	if (base == 10 && value < 0)
-	{
-		if (value < -9223372036854775807)
-			return (ft_strdup("-9223372036854775808"));
-		sign = 1;
-		nb = value * -1;
-	}
-	else
-	{
-		if (value < 0)
-			nb = (unsigned int)(value * - 1);
-		else
-			nb = value;
-	}
+	if (base == 10 && value < -9223372036854775807)
+		return (ft_strdup("-9223372036854775808"));
+	nb = ft_itoa_prep(value, base, &sign);
 	length = ft_itoa_base_length(nb, base);
 	str = (char*)malloc(sizeof(char) * (length + sign + 1));
 	str[length + sign] = '\0';
@@ -73,7 +82,7 @@ char	*ft_itoa_base(intmax_t value, int base)
 	return (str);
 }
 
-char	*ft_uitoa_base(uintmax_t value, int base)
+char			*ft_uitoa_base(uintmax_t value, int base)
 {
 	char			*str;
 	int				length;
@@ -93,4 +102,3 @@ char	*ft_uitoa_base(uintmax_t value, int base)
 	}
 	return (str);
 }
-
