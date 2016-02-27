@@ -1,5 +1,3 @@
-.PHONY: leaks
-
 SRCS = addchar.c \
 	   ft_itoa_base.c \
 	   ft_printf.c \
@@ -28,7 +26,7 @@ RM = rm -rf
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 LIBFT = ./libft/libft.a
 
-all: clean $(NAME)
+all: $(NAME)
 
 $(LIBFT):
 	@make -C libft
@@ -45,22 +43,10 @@ $(addprefix $(OBJDIR)/, %.o): $(addprefix $(SRCDIR)/, %.c)
 	@$(CC) -o $@ -c $^
 
 clean:
-	@$(RM) $(NAME)
 	@$(RM) $(OBJDIR)
 
 fclean: clean
-	#@make -C libft fclean
-	@$(RM) printf
-	@$(RM) ./printf.dSYM
+	@$(RM) $(NAME)
+	@make -C libft fclean
 
 re: fclean all
-
-test:
-	$(RM) printf
-	$(CC) main.c $(NAME) -o printf
-	./printf
-
-leaks:
-	$(RM) leakstest
-	$(CC) mainleaks.c $(NAME) -o leakstest
-	./leakstest
