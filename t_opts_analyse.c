@@ -6,92 +6,11 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 00:12:37 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 08:03:27 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 09:29:42 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		issigned(t_opts *opts)
-{
-	if (opts->type == 'd' || opts->type == 'i' || opts->type == 'D')
-		return (1);
-	return (0);
-}
-
-int		isunsigned(t_opts *opts)
-{
-	if (opts->type == 'o' || opts->type == 'O' ||
-		opts->type == 'x' || opts->type == 'X' ||
-		opts->type == 'u' || opts->type == 'U')
-		return (1);
-	return (0);
-}
-
-int		iswchar(t_opts *opts)
-{
-	if (opts->type == 'C' ||
-		opts->type == 'S' ||
-		((!ft_strcmp(opts->modify, "l")) &&
-		(opts->type == 'c' || opts->type == 's')))
-		return (1);
-	return (0);
-}
-
-int		ischar(t_opts *opts)
-{
-	if (opts->type == '%' || opts->type == 'c' || opts->type == 's')
-		return (1);
-	return (0);
-}
-
-int		isptr(t_opts *opts)
-{
-	if (opts->type == 'p')
-		return (1);
-	return (0);
-}
-
-int		istype(char c)
-{
-	const char	types[14] = {"diDuUcCsSoOxXp"};
-
-	if (ft_strchr(types, c))
-		return (1);
-	return (0);
-}
-
-int		isflag(char c)
-{
-	const char	*flags = "-+ #0";
-
-	if (ft_strchr(flags, c))
-		return (1);
-	return (0);
-}
-
-int		ismod(char c)
-{
-	const char	*mod = "hljz";
-
-	if (ft_strchr(mod, c))
-		return (1);
-	return (0);
-}
-
-int		isocta(t_opts *opts)
-{
-	if (opts->type == 'o' || opts->type == 'O')
-		return (1);
-	return (0);
-}
-
-int		ishexa(t_opts *opts)
-{
-	if (opts->type == 'x' || opts->type == 'X')
-		return (1);
-	return (0);
-}
 
 void	analysemod(t_opts *opts)
 {

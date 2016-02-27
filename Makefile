@@ -10,6 +10,8 @@ SRCS = t_opts.c \
 	   addchar.c \
 	   ft_wcs.c \
 	   t_opts_analyse.c \
+	   is.c \
+	   is2.c \
 	   t_printf.c
 
 NAME = libftprintf.a
