@@ -3,8 +3,8 @@
 
 int main(void)
 {
-  //ft_printf("\n");
-  ft_printf("%%\n");
+  ft_printf("\n");
+  ft_printf("%% %%\n");
   ft_printf("%d\n", 42);
   ft_printf("%d\n", 42);
   ft_printf("%d%d\n", 42, 41);
