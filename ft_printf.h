@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 04:43:46 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 05:24:53 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,11 @@ char				*render_opts_numeric_unsigned(t_opts *opts, va_list *pa);
 char				*render_opts_error(t_opts *opts, va_list *pa, char *str);
 
 char				*straddnchar(char *str, int way, int n, char c);
+char				*straddncharsigned(char *str, int n, char c);
 wchar_t				*wstraddnchar(wchar_t *wstr, int way, int n, char c);
 
 char				*addhexachar(char *str, int ishexa);
+char				*addoctachar(char *str);
 char				*applyflag(t_opts *opts, char *str);
 char				*applyprecision(t_opts *opts, char *str);
 wchar_t				*applyprecisionwchar(t_opts *opts, wchar_t *str);
