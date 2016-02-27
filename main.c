@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:02:08 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 13:38:33 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 14:50:56 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,13 @@ w = 10;
 ft_printf("{blue}%+0*d{eoc}%0*d{red}%0*d{eoc}\n", w, 10, w, 0, w, 0);
 ft_printf("{blue}%+0*d{eoc}%0*d{red}%0*d{eoc}\n", w, 9, w, 0, w, 0);
 
-//	ft_printf("{%05.*d}", -15, 42);
-//	ft_putendl("");
-//	   printf("{%05.*d}", -15, 42);
-//	printf("[%s]", 20, "toto");
+//	ft_printf("", -15, 42);
+//	ft_putendlx("");
+ int i;
+ i = 0;
+	   printf("[jfuuu %n]\n", &i);
+	   *i = len
+	printf("[%d]", i);
 
 //	ft_putstr(ft_itoa_base(INTMAX_MIN, 10));
 	return (0);
