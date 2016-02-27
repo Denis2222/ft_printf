@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 13:25:14 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 17:10:30 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_opts				*addopts(t_opts **lst, t_opts *new);
 int					renderopts(t_opts *opts, va_list *pa);
 void				initopts(t_opts *opts, char *startopts, int *pos);
 int					optsflag(t_opts *opts, char *str);
-void				cleanopts(t_opts *opts);
+int					cleanopts(t_opts *opts);
 
 typedef struct		s_ftprintf
 {

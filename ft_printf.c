@@ -6,13 +6,13 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 13:33:18 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 17:12:09 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	writecount(char c, int *len)
+void	writechar(char c, int *len)
 {
 	(*len)++;
 	ft_putchar(c);
@@ -45,22 +45,31 @@ void	writecolor(char *str)
 		ft_putstr(KNRM);
 }
 
-void	lookcolor(char **format)
+void	evalcolor(char **format)
 {
 	const char	color[8][9] = {"{red}", "{green}", "{yellow}",
-				"{blue}", "magenta", "{cyan}", "{eoc}"};
+	"{blue}", "magenta", "{cyan}", "{eoc}"};
 	int			i;
 
-	i = 0;
-	while (i < 7)
+	if (**format == '{')
 	{
-		if (!ft_strncmp(*format, color[i], ft_strlen(color[i])))
+		i = 0;
+		while (i < 7)
 		{
-			writecolor((char *)color[i]);
-			*format += ft_strlen(color[i]);
+			if (!ft_strncmp(*format, color[i], ft_strlen(color[i])))
+			{
+				writecolor((char *)color[i]);
+				*format += ft_strlen(color[i]);
+			}
+			i++;
 		}
-		i++;
 	}
+}
+
+void	intinit(int *len, int *pos)
+{
+	*len = 0;
+	*pos = 0;
 }
 
 int		ft_printf(char *format, ...)
@@ -70,22 +79,21 @@ int		ft_printf(char *format, ...)
 	int			pos;
 	int			len;
 
-	len = 0;
-	pos = 0;
+	intinit(&len, &pos);
+	if (!format)
+		return (-1);
 	va_start(pa, format);
 	while (*format)
 	{
-		if (*format == '{')
-			lookcolor(&format);
+		evalcolor(&format);
 		if (*format == '%')
 		{
 			new = newopts(format, &pos, &pa);
 			len += renderopts(new, &pa);
-			cleanopts(new);
-			format += new->length;
+			format += cleanopts(new);
 		}
 		else
-			writecount(*format, &len);
+			writechar(*format, &len);
 		incremente(&format, &pos);
 	}
 	va_end(pa);

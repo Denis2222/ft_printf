@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 16:07:39 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 12:08:45 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/27 17:11:25 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,16 @@ t_opts	*newopts(char *format, int *pos, va_list *pa)
 	return (opts);
 }
 
-void	cleanopts(t_opts *opts)
+int		cleanopts(t_opts *opts)
 {
+	int	length;
+
+	length = opts->length;
 	free(opts->str);
 	free(opts->flags);
 	free(opts->modify);
 	free(opts);
+	return (length);
 }
 
 int		renderopts(t_opts *opts, va_list *pa)
