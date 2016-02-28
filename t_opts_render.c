@@ -31,7 +31,7 @@ char		*render_opts_char(t_opts *opts, va_list *pa)
 	{
 		s = va_arg(*pa, char *);
 		if (!s && !opts->precision)
-			return (ft_strdup("(null)"));
+			s =ft_strdup("(null)");
 		else if (!s)
 			s = ft_strdup("");
 		s = ft_strdup(s);

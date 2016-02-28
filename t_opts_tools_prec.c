@@ -54,7 +54,7 @@ char	*applyprecision(t_opts *opts, char *str)
 		}
 		return (str);
 	}
-	else if ((opts->precision > 0 && !opts->flags['#']) ||
+	else if ((opts->type != 'c' && opts->precision > 0 && !opts->flags['#']) ||
 			(opts->type != 'o' && opts->type != 'O' &&
 			opts->precision > 0 && opts->flags['#']))
 	{
