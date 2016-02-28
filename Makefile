@@ -47,6 +47,12 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
-	@make -C libft fclean
+	#@make -C libft fclean
 
 re: fclean all
+
+test: fclean all
+	rm -f test
+	gcc libftprintf.a main.c -o test
+	./test
+

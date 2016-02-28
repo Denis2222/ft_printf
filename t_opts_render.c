@@ -30,7 +30,7 @@ char		*render_opts_char(t_opts *opts, va_list *pa)
 	else
 	{
 		s = va_arg(*pa, char *);
-		if (!s && !opts->precision)
+		if (!s)
 			s =ft_strdup("(null)");
 		else if (!s)
 			s = ft_strdup("");

@@ -59,12 +59,32 @@ void	testchar(char *str, char value)
 
 	ft_putstr("=============\nstr in:");
 	ft_putendl(str);
+	ft_putstr("---\n");
 
 	n = ft_printf(str, value);
 	ft_putendl("");
 	ft_putnbr(n);
 	ft_putendl("");
 	n = printf(str, value);
+	ft_putendl("");
+	ft_putnbr(n);
+	ft_putendl("\n================");
+}
+
+void	testcharwild(char *str, char value, int wild)
+{
+	int n;
+	str = ft_strdup(str);
+
+	ft_putstr("=============\nstr in:");
+	ft_putendl(str);
+	ft_putstr("---\n");
+
+	n = ft_printf(str, wild, value);
+	ft_putendl("");
+	ft_putnbr(n);
+	ft_putendl("");
+	n = printf(str, wild, value);
 	ft_putendl("");
 	ft_putnbr(n);
 	ft_putendl("\n================");
@@ -128,20 +148,25 @@ ft_printf("{red}%b{eoc}baobab{green}%s{eoc}\n\n\n", 9999, "toto");
 */
 int	w;
 
-w = 10;
+w = 30;
 ft_printf("{blue}%+0*d{eoc}%0*d{red}%0*d{eoc}\n", w, 10, w, 0, w, 0);
 ft_printf("{blue}%+0*d{eoc}%0*d{red}%0*d{eoc}\n", w, 9, w, 0, w, 0);
 
+test("Kla Kla %.p", 0);
+test("Kla Kla %.p", -1);
+test("Kla Kla %.p", -10000);
+test("Kla Kla %.p", -1);
 
-ft_printf("\n");
-ft_printf("%p\n", 0);
-ft_printf("\n");
+//testchar("Kla Kla %.c", 'a');
+//testcharwild("Kla Kla %*c", 0, 0);
+//testcharwild("Kla Kla %*c", 3, 0);
+//testcharwild("Kla Kla %*c", 10, 0);
+//testcharwild("Kla Kla %*c", -15, 0);
 
-testchar("Kla Kla %.0c", 'a');
+//teststr("Kla Kla %10s", 0);
+//teststr("Kla Kla %.3s", 0);
 
-printf("okokokok %.c", 0);
-
-	ft_printf(NULL, -15, 42);
+//	ft_printf(NULL, -15, 42);
 //	ft_putendlx("");
  int i;
  i = 0;

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*omgfuckthisshit(t_opts *opts, char *str)
+char	*applyspecialprecision(t_opts *opts, char *str)
 {
 	int		sign;
 	char	*new;
@@ -42,9 +42,10 @@ char	*applyprecision(t_opts *opts, char *str)
 {
 	char	*new;
 
-	if ((issigned(opts) || isunsigned(opts) || opts->type == 'p')
-		&& opts->precisionn > 0 && opts->precision)
-		return (omgfuckthisshit(opts, str));
+	if (((issigned(opts) || isunsigned(opts) || opts->type == 'p')
+		&& opts->precisionn > 0 && opts->precision) ||
+		(opts->type == 'p' && opts->precision && ft_strcmp(str, "0")))
+		return (applyspecialprecision(opts, str));
 	else if ((issigned(opts) || isunsigned(opts)))
 	{
 		if (str[0] == '0' && !str[1] && opts->precision)
