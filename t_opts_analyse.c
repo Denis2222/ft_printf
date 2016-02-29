@@ -36,7 +36,7 @@ void	analyseflags(t_opts *opts)
 	char *str;
 
 	str = opts->str;
-	while (*str && (!ft_isdigit(*str) || *str == '0'))
+	while ((*str && (!ft_isdigit(*str) || *str == '0')) && *str != '.')
 	{
 		if (isflag(*str))
 		{
