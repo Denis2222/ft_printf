@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:02:08 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 18:03:08 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/29 18:52:30 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ testcharwild("Kla Kla %*c", 0, -15);
 
 testcharwild("Klo Klo %*.0c", 0, 3);
 
+
+ft_printf("{bold} TOTO {eoc}");
 
 testcharwild("Klu Klu %03*p", 0, 0);
 //test("Kla Kla %.p", 0);

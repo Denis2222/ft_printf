@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 14:01:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 17:10:30 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/02/29 18:53:47 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define KMAG  "\x1B[35m"
 # define KCYN  "\x1B[36m"
 # define KWHT  "\x1B[37m"
+# define KBOL  "\e[1m"
 
 int					ft_printf(char *format, ...);
 
@@ -128,5 +129,8 @@ void				printfclean(t_printf *pf);
 int					putoptsstr(t_opts *opts, char *str);
 int					putoptswstr(t_opts *opts, wchar_t *wstr);
 int					putoptsnull(t_opts *opts);
+
+void				evalcolor(char **format, va_list *pa, int len);
+void				incremente(char **format, int *pos);
 
 #endif

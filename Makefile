@@ -13,6 +13,7 @@ SRCS = addchar.c \
 	   t_opts_render_numeric.c \
 	   t_opts_tools.c \
 	   t_opts_tools_prec.c \
+	   bonus.c \
 	   tools.c
 
 NAME = libftprintf.a
