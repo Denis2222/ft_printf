@@ -17,6 +17,8 @@ int		putoptsstr(t_opts *opts, char *str)
 	int	len;
 
 	len = ft_strlen(str);
+	if (opts->type == 'c' && len == opts->width - 1 && opts->flags['-'])
+		ft_putchar(0);
 	ft_putstr(str);
 	freestr(str);
 	str = NULL;
@@ -27,7 +29,8 @@ int		putoptsstr(t_opts *opts, char *str)
 	}
 	else if (len == opts->width - 1 && opts->type == 'c')
 	{
-		ft_putchar(0);
+		if(!opts->flags['-'])
+			ft_putchar(0);
 		return (len + 1);
 	}
 	else
