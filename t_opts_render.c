@@ -34,7 +34,8 @@ char		*render_opts_char(t_opts *opts, va_list *pa)
 			s =ft_strdup("(null)");
 		else if (!s)
 			s = ft_strdup("");
-		s = ft_strdup(s);
+		else
+			s = ft_strdup(s);
 		s = applyprecision(opts, s);
 	}
 	s = applywidth(opts, s);

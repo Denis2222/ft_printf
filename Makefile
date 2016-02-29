@@ -13,7 +13,6 @@ SRCS = addchar.c \
 	   t_opts_render_numeric.c \
 	   t_opts_tools.c \
 	   t_opts_tools_prec.c \
-	   t_printf.c \
 	   tools.c
 
 NAME = libftprintf.a
@@ -47,7 +46,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
-	#@make -C libft fclean
+	@make -C libft fclean
 
 re: fclean all
 

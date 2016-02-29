@@ -150,12 +150,19 @@ int	w;
 
 w = 30;
 ft_printf("{blue}%+0*d{eoc}%0*d{red}%0*d{eoc}\n", w, 10, w, 0, w, 0);
-ft_printf("{blue}%+0*d{eoc}%0*d{red}%0*d{eoc}\n", w, 9, w, 0, w, 0);
+//ft_printf("{blue}%+0*d{eoc}%0*d{red}%0*d{eoc}\n", w, 9, w, 0, w, 0);
 
-test("Kla Kla %.p", 0);
-test("Kla Kla %.p", -1);
-test("Kla Kla %.p", -10000);
-test("Kla Kla %.p", -1);
+
+testcharwild("Kla Kla %*c", 0, -15);
+
+testcharwild("Klo Klo %*.0c", 0, 3);
+
+
+testcharwild("Klu Klu %03*p", 0, 0);
+//test("Kla Kla %.p", 0);
+//test("Kla Kla %.p", -1);
+//test("Kla Kla %.p", -10000);
+//test("Kla Kla %.p", -1);
 
 //testchar("Kla Kla %.c", 'a');
 //testcharwild("Kla Kla %*c", 0, 0);

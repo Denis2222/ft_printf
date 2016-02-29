@@ -45,11 +45,12 @@ void	writecolor(char *str)
 		ft_putstr(KNRM);
 }
 
-void	evalcolor(char **format)
+void	evalcolor(char **format, va_list *pa, int len)
 {
 	const char	color[8][9] = {"{red}", "{green}", "{yellow}",
 	"{blue}", "magenta", "{cyan}", "{eoc}"};
 	int			i;
+	int *e;
 
 	if (**format == '{')
 	{
@@ -63,6 +64,12 @@ void	evalcolor(char **format)
 			}
 			i++;
 		}
+	}
+	else if (ft_strncmp(*format, "%n", 2) == 0)
+	{
+		e = va_arg(*pa, int*);
+		*e = len;
+		*format += 2;
 	}
 }
 
@@ -85,7 +92,7 @@ int		ft_printf(char *format, ...)
 	va_start(pa, format);
 	while (*format)
 	{
-		evalcolor(&format);
+		evalcolor(&format, &pa, len);
 		if (*format == '%')
 		{
 			new = newopts(format, &pos, &pa);
