@@ -23,7 +23,6 @@ void	test(char *str, int value)
 
 	ft_putstr("=============\nstr in:");
 	ft_putendl(str);
-
 	n = ft_printf(str, value);
 	ft_putendl("");
 	ft_putnbr(n);
@@ -41,7 +40,6 @@ void	teststr(char *str, char *value)
 
 	ft_putstr("=============\nstr in:");
 	ft_putendl(str);
-
 	n = ft_printf(str, value);
 	ft_putendl("");
 	ft_putnbr(n);
@@ -55,12 +53,11 @@ void	teststr(char *str, char *value)
 void	testchar(char *str, char value)
 {
 	int n;
-	str = ft_strdup(str);
 
+	str = ft_strdup(str);
 	ft_putstr("=============\nstr in:");
 	ft_putendl(str);
 	ft_putstr("---\n");
-
 	n = ft_printf(str, value);
 	ft_putendl("");
 	ft_putnbr(n);
@@ -74,12 +71,11 @@ void	testchar(char *str, char value)
 void	testcharwild(char *str, char value, int wild)
 {
 	int n;
-	str = ft_strdup(str);
 
+	str = ft_strdup(str);
 	ft_putstr("=============\nstr in:");
 	ft_putendl(str);
 	ft_putstr("---\n");
-
 	n = ft_printf(str, wild, value);
 	ft_putendl("");
 	ft_putnbr(n);
@@ -93,11 +89,10 @@ void	testcharwild(char *str, char value, int wild)
 void	testwstr(char *str, wchar_t *value)
 {
 	int n;
-	str = ft_strdup(str);
 
+	str = ft_strdup(str);
 	ft_putstr("=============\nstr in:");
 	ft_putendl(str);
-
 	n = ft_printf(str, value);
 	ft_putendl("");
 	ft_putnbr(n);
@@ -147,40 +142,31 @@ int	main(int ac, char **av)
 ft_printf("{red}%b{eoc}baobab{green}%s{eoc}\n\n\n", 9999, "toto");
 */
 int	w;
-
 w = 30;
 ft_printf("{blue}%+0*d{eoc}%0*d{red}%0*d{eoc}\n", w, 10, w, 0, w, 0);
 //ft_printf("{blue}%+0*d{eoc}%0*d{red}%0*d{eoc}\n", w, 9, w, 0, w, 0);
-
-
 testcharwild("Kla Kla %*c", 0, -15);
-
 testcharwild("Klo Klo %*.0c", 0, 3);
-
-
 ft_printf("{bold} TOTO {eoc}");
-
 testcharwild("Klu Klu %03*p", 0, 0);
+ft_printf("{red}{bold}BOLD{eoc}\n{dim}DIM{eoc}\n{green}{under}green under{eoc}\n{blue}{blink}Blue Blink{eoc}\n{inv}inverted{eoc}\n{blink}%s{eoc}", "coucou");
 //test("Kla Kla %.p", 0);
 //test("Kla Kla %.p", -1);
 //test("Kla Kla %.p", -10000);
 //test("Kla Kla %.p", -1);
-
 //testchar("Kla Kla %.c", 'a');
 //testcharwild("Kla Kla %*c", 0, 0);
 //testcharwild("Kla Kla %*c", 3, 0);
 //testcharwild("Kla Kla %*c", 10, 0);
 //testcharwild("Kla Kla %*c", -15, 0);
-
 //teststr("Kla Kla %10s", 0);
 //teststr("Kla Kla %.3s", 0);
-
 //	ft_printf(NULL, -15, 42);
 //	ft_putendlx("");
  int i;
  i = 0;
-//	   printf("[jfuuu %n]\n", &i);
-//	printf("[%d]", i);
+	printf("[jfuuu %n]\n toto fait du velo", &i);
+	ft_printf("[%d]", i);
 
 //	ft_putstr(ft_itoa_base(INTMAX_MIN, 10));
 	return (0);
