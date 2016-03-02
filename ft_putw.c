@@ -12,33 +12,28 @@
 
 #include "ft_printf.h"
 
-void	ft_putwchar_fd(wchar_t chr, int fd)
+void	ft_putwchar(wchar_t chr)
 {
 	if (chr <= 0x7F)
-		ft_putchar_fd(chr, fd);
+		ft_putbuffer(chr, 0);
 	else if (chr <= 0x7FF)
 	{
-		ft_putchar_fd((chr >> 6) + 0xC0, fd);
-		ft_putchar_fd((chr & 0x3F) + 0x80, fd);
+		ft_putbuffer((chr >> 6) + 0xC0, 0);
+		ft_putbuffer((chr & 0x3F) + 0x80, 0);
 	}
 	else if (chr <= 0xFFFF)
 	{
-		ft_putchar_fd((chr >> 12) + 0xE0, fd);
-		ft_putchar_fd(((chr >> 6) & 0x3F) + 0x80, fd);
-		ft_putchar_fd((chr & 0x3F) + 0x80, fd);
+		ft_putbuffer((chr >> 12) + 0xE0, 0);
+		ft_putbuffer(((chr >> 6) & 0x3F) + 0x80, 0);
+		ft_putbuffer((chr & 0x3F) + 0x80, 0);
 	}
 	else if (chr <= 0x10FFFF)
 	{
-		ft_putchar_fd((chr >> 18) + 0xF0, fd);
-		ft_putchar_fd(((chr >> 12) & 0x3F) + 0x80, fd);
-		ft_putchar_fd(((chr >> 6) & 0x3F) + 0x80, fd);
-		ft_putchar_fd((chr & 0x3F) + 0x80, fd);
+		ft_putbuffer((chr >> 18) + 0xF0, 0);
+		ft_putbuffer(((chr >> 12) & 0x3F) + 0x80, 0);
+		ft_putbuffer(((chr >> 6) & 0x3F) + 0x80, 0);
+		ft_putbuffer((chr & 0x3F) + 0x80, 0);
 	}
-}
-
-void	ft_putwchar(wchar_t c)
-{
-	ft_putwchar_fd(c, 1);
 }
 
 void	ft_putwstr(wchar_t *wstr)

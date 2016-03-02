@@ -32,6 +32,7 @@
 # define KUNDER "\e[4m"
 # define KBLINK "\e[5m"
 # define KINV   "\e[7m"
+# define PRINTFBUFFER 400
 
 int					ft_printf(char *format, ...);
 
@@ -136,5 +137,10 @@ int					putoptsnull(t_opts *opts);
 
 void				evalcolor(char **format, va_list *pa, int len);
 void				incremente(char **format, int *pos);
+
+void				ft_putstrn(char *buffer, int len);
+void				ft_putbuffer(char c, int way);
+void				ft_printbuffer(char *buffer, int len);
+void				ft_putstrbuf(char *str);
 
 #endif

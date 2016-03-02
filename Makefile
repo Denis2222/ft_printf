@@ -14,6 +14,7 @@ SRCS = addchar.c \
 	   t_opts_tools.c \
 	   t_opts_tools_prec.c \
 	   bonus.c \
+	   buffer.c \
 	   tools.c
 
 NAME = libftprintf.a
@@ -47,12 +48,27 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
-	@make -C libft fclean
+	#@make -C libft fclean
 
 re: fclean all
 
-test: fclean all
+test: clean all
 	rm -f test
 	gcc libftprintf.a main.c -o test
 	./test
+
+test2: clean all
+	rm -f test2
+	gcc libftprintf.a main2.c -o test2
+	./test2
+
+speed: clean all
+	rm -f speed
+	gcc libftprintf.a speedtest_ft_printf.c -o speed
+	time ./speed
+
+speedreal: clean all
+	rm -f speedreql
+	gcc speedtest_printf.c -o speedreal
+	time ./speedreal
 

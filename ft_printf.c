@@ -15,7 +15,7 @@
 void	writechar(char c, int *len)
 {
 	(*len)++;
-	ft_putchar(c);
+	ft_putbuffer(c, 0);
 }
 
 
@@ -50,5 +50,6 @@ int		ft_printf(char *format, ...)
 		incremente(&format, &pos);
 	}
 	va_end(pa);
+	ft_putbuffer(0, 1);
 	return (len);
 }

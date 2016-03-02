@@ -18,19 +18,19 @@ int		putoptsstr(t_opts *opts, char *str)
 
 	len = ft_strlen(str);
 	if (opts->type == 'c' && len == opts->width - 1 && opts->flags['-'])
-		ft_putchar(0);
-	ft_putstr(str);
+		ft_putbuffer(0, 0);
+	ft_putstrbuf(str);
 	freestr(str);
 	str = NULL;
 	if (len == 0 && opts->type == 'c')
 	{
-		ft_putchar(0);
+		ft_putbuffer(0, 0);
 		return (1);
 	}
 	else if (len == opts->width - 1 && opts->type == 'c')
 	{
 		if(!opts->flags['-'])
-			ft_putchar(0);
+			ft_putbuffer(0, 0);
 		return (len + 1);
 	}
 	else
@@ -58,7 +58,7 @@ int		putoptsnull(t_opts *opts)
 		return (0);
 	else
 	{
-		ft_putstr("(null)");
+		ft_putstrbuf("(null)");
 		return (ft_strlen("(null)"));
 	}
 }

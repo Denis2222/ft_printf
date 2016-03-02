@@ -24,29 +24,29 @@ void	incremente(char **format, int *pos)
 void	writecolor(char *str)
 {
 	if (!ft_strcmp("{eoc}", str))
-		ft_putstr(KNRM);
+		ft_putstrbuf(KNRM);
 	else if (!ft_strcmp("{red}", str))
-		ft_putstr(KRED);
+		ft_putstrbuf(KRED);
 	else if (!ft_strcmp("{green}", str))
-		ft_putstr(KGRN);
+		ft_putstrbuf(KGRN);
 	else if (!ft_strcmp("{yellow}", str))
-		ft_putstr(KYEL);
+		ft_putstrbuf(KYEL);
 	else if (!ft_strcmp("{blue}", str))
-		ft_putstr(KBLU);
+		ft_putstrbuf(KBLU);
 	else if (!ft_strcmp("{magenta}", str))
-		ft_putstr(KMAG);
+		ft_putstrbuf(KMAG);
 	else if (!ft_strcmp("{cyan}", str))
-		ft_putstr(KCYN);
+		ft_putstrbuf(KCYN);
 	else if (!ft_strcmp("{bold}", str))
-		ft_putstr(KBOLD);
+		ft_putstrbuf(KBOLD);
 	else if (!ft_strcmp("{dim}", str))
-		ft_putstr(KDIM);
+		ft_putstrbuf(KDIM);
 	else if (!ft_strcmp("{under}", str))
-		ft_putstr(KUNDER);
+		ft_putstrbuf(KUNDER);
 	else if (!ft_strcmp("{blink}", str))
-		ft_putstr(KBLINK);
+		ft_putstrbuf(KBLINK);
 	else if (!ft_strcmp("{inv}", str))
-		ft_putstr(KINV);
+		ft_putstrbuf(KINV);
 }
 
 void	bonustypen(char **format, va_list *pa, int len)
