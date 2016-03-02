@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/17 13:50:53 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 18:08:22 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/03/02 10:02:25 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,14 @@ char		*render_opts_char(t_opts *opts, va_list *pa)
 	{
 		s = va_arg(*pa, char *);
 		if (!s)
-			s =ft_strdup("(null)");
+			s = ft_strdup("(null)");
 		else if (!s)
 			s = ft_strdup("");
 		else
 			s = ft_strdup(s);
 		s = applyprecision(opts, s);
 	}
-	s = applywidth(opts, s);
-	return (s);
+	return (applywidth(opts, s));
 }
 
 char		*render_opts_error(t_opts *opts, va_list *pa, char *str)

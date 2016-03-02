@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/13 20:28:06 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/29 18:47:35 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/03/02 10:00:11 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	writechar(char c, int *len)
 	(*len)++;
 	ft_putbuffer(c, 0);
 }
-
 
 void	intinit(int *len, int *pos)
 {

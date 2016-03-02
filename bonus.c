@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/29 18:39:28 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/29 18:56:36 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/03/02 10:00:21 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,3 @@ void	evalcolor(char **format, va_list *pa, int len)
 	else if (ft_strncmp(*format, "%n", 2) == 0)
 		bonustypen(format, pa, len);
 }
-

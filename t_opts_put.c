@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 09:50:08 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 09:56:08 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/03/02 10:00:53 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		putoptsstr(t_opts *opts, char *str)
 	}
 	else if (len == opts->width - 1 && opts->type == 'c')
 	{
-		if(!opts->flags['-'])
+		if (!opts->flags['-'])
 			ft_putbuffer(0, 0);
 		return (len + 1);
 	}

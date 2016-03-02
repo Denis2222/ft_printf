@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/27 11:04:51 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/02/27 11:05:32 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/03/02 10:03:53 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ char	*applyprecision(t_opts *opts, char *str)
 			(opts->type != 'o' && opts->type != 'O' &&
 			opts->precision > 0 && opts->flags['#']))
 	{
-		new = ft_strnew(opts->precisionn);
-		new = ft_strncpy(new, str, opts->precisionn);
+		new = ft_strncpy(ft_strnew(opts->precisionn), str, opts->precisionn);
 		freestr(str);
 		return (new);
 	}
