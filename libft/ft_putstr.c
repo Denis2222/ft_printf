@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:26:12 by dmoureu-          #+#    #+#             */
-/*   Updated: 2015/12/14 17:58:26 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/05/27 02:23:49 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,5 @@
 
 void	ft_putstr(char *str)
 {
-	while (*str)
-	{
-		ft_putchar(*str);
-		str++;
-	}
+	write(1, str, ft_strlen(str));
 }
