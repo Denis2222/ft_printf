@@ -1,5 +1,11 @@
 # ft_printf
 
+printf clone 
+
+type : "diDuUcCsSoOxXpb"
+flag : "-+ #0"
+mode : "hljz"
+
 | type | Format | Sortie |
 | -----| ----| ----------|
 | d | int |
